@@ -302,7 +302,7 @@ class FacebookBot {
 
             console.log("Texto enviado por el usuario: ", text);
             //se en envia palabra reservada a api ai para proceso de alta 
-            if (text = 'Alta') {
+            if (text == 'Alta') {
                 text = 'cod-alta';
             }
             //send user's text to api.ai service
