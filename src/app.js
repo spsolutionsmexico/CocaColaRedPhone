@@ -327,10 +327,10 @@ class FacebookBot {
 
                 //se obtiene la meta data de la respuesta de api ai
                 console.log('doApiAiRequest response.result ', response.result);
-                console.log('doApiAiRequest sender: ', sender);
-                console.log('response.result.metadata.intentName: ', response.result.metadata.intentName);
-                console.log('response.result.parameters.valor: ', response.result.parameters.valor);
-                console.log('response.sessionId: ', response.sessionId);
+                //console.log('doApiAiRequest sender: ', sender);
+                //console.log('response.result.metadata.intentName: ', response.result.metadata.intentName);
+                //console.log('response.result.parameters.valor: ', response.result.parameters.valor);
+                //console.log('response.sessionId: ', response.sessionId);
 
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
                     let facebookResponseData = responseData.facebook;
