@@ -238,6 +238,10 @@ class FacebookBot {
             }
 
             if (event.message.text) {
+                if (event.message.text == "Alta") {
+                    console.log('return cod-alta');
+                    return 'cod-alta';
+                }
                 return event.message.text;
             }
         }
