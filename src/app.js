@@ -301,6 +301,10 @@ class FacebookBot {
             }
 
             console.log("Texto enviado por el usuario: ", text);
+            //se en envia palabra reservada a api ai para proceso de alta 
+            if (text = 'Alta') {
+                text = 'cod-alta';
+            }
             //send user's text to api.ai service
             let apiaiRequest = this.apiAiService.textRequest(text, {
                 sessionId: this.sessionIds.get(sender),
@@ -320,6 +324,13 @@ class FacebookBot {
                 let responseText = response.result.fulfillment.speech;
                 let responseData = response.result.fulfillment.data;
                 let responseMessages = response.result.fulfillment.messages;
+
+                //se obtiene la meta data de la respuesta de api ai
+                console.log('doApiAiRequest response.result ', response.result);
+                console.log('doApiAiRequest sender: ', sender);
+                console.log('response.result.metadata.intentName: ', response.result.metadata.intentName);
+                console.log('response.result.parameters.valor: ', response.result.parameters.valor);
+                console.log('response.sessionId: ', response.sessionId);
 
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
                     let facebookResponseData = responseData.facebook;
