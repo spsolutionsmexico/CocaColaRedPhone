@@ -67,7 +67,7 @@ class FacebookBot {
                     // we have to get value from fulfillment.speech, because of here is raw speech
                     if (message.speech) {
                         let splittedText = this.splitResponse(message.speech);
-                        // message.speech contiene el texto del mensaje 
+                        // message.speech contiene el texto del mensaje api ai -> heroku 
                         console.log('message.speech: ' + message.speech);
                         splittedText.forEach(s => {
                             facebookMessages.push({ text: s });
@@ -300,7 +300,7 @@ class FacebookBot {
                 this.sessionIds.set(sender, uuid.v4());
             }
 
-            console.log("Text", text);
+            console.log("Texto enviado por el usuario: ", text);
             //send user's text to api.ai service
             let apiaiRequest = this.apiAiService.textRequest(text, {
                 sessionId: this.sessionIds.get(sender),
