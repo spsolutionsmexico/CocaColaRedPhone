@@ -321,6 +321,12 @@ class FacebookBot {
                 let responseData = response.result.fulfillment.data;
                 let responseMessages = response.result.fulfillment.messages;
 
+                console.log('doApiAiRequest response.result ', response.result);
+                //console.log('doApiAiRequest sender: ',sender);
+                //console.log('response.result.metadata.intentName: ',response.result.metadata.intentName);
+                //console.log('response.result.parameters.valor: ',response.result.parameters.valor);
+                //console.log('response.sessionId: ',response.sessionId);
+
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
                     let facebookResponseData = responseData.facebook;
                     this.doDataResponse(sender, facebookResponseData);
