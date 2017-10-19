@@ -345,8 +345,7 @@ class FacebookBot {
                 //proceso alta 
                 response.result.contexts.forEach(function(value) {
                     console.log('response.result.contexts: ', value);
-                    console.log('value.lifespan: ', value.lifespan);
-                    /*if (JSONbig.parse(value).lifespan == 1) {
+                    /*if (value.lifespan == 1) {
                         console.log('valores a guadar en firebase');
                         console.log('contexto: : ', JSONbig.parse(value).name);
                         console.log('valor: : ', response.result.parameters.valor);
