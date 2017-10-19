@@ -344,7 +344,7 @@ class FacebookBot {
                 //console.log('response.sessionId: ', response.sessionId);
                 //proceso alta 
                 response.result.contexts.forEach(function(value) {
-                    console.log('response.result.contexts: ', value);
+                    console.log('value.lifespan: ', value.lifespan);
                 });
 
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
