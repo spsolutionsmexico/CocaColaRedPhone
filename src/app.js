@@ -343,7 +343,7 @@ class FacebookBot {
                 console.log('response.result.parameters.valor: ', response.result.parameters.valor);
                 //console.log('response.sessionId: ', response.sessionId);
                 //proceso alta 
-                response.result.contexts[].forEach(function(value) {
+                response.result.contexts.forEach(function(value) {
                     console.log('response.result.contexts: ', value);
                 });
 
