@@ -337,14 +337,18 @@ class FacebookBot {
                 let responseData = response.result.fulfillment.data;
                 let responseMessages = response.result.fulfillment.messages;
                 //recuperando datos del request de api ai 
-                console.log('doApiAiRequest response.result ', response.result);
-                console.log('doApiAiRequest sender: ', sender);
+                //console.log('doApiAiRequest response.result ', response.result);
+                //console.log('doApiAiRequest sender: ', sender);
                 //console.log('response.result.metadata.intentName: ', response.result.metadata.intentName);
-                console.log('response.result.parameters.valor: ', response.result.parameters.valor);
+                //console.log('response.result.parameters.valor: ', response.result.parameters.valor);
                 //console.log('response.sessionId: ', response.sessionId);
                 //proceso alta 
                 response.result.contexts.forEach(function(value) {
-                    console.log('value.lifespan: ', value.lifespan);
+                    if (value.lifespan == 1) {
+                        console.log('doApiAiRequest sender: ', sender);
+                        console.log('response.result.parameters.valor: ', response.result.parameters.valor);
+                        console.log('contexto: ', value.name);
+                    }
                 });
 
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
