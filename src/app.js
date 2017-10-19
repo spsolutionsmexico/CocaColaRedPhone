@@ -344,13 +344,14 @@ class FacebookBot {
                 //console.log('response.sessionId: ', response.sessionId);
                 //proceso alta 
                 response.result.contexts.forEach(function(value) {
-                    // console.log('response.result.contexts: ', value);
-                    if (JSONbig.parse(value).lifespan == 1) {
+                    console.log('response.result.contexts: ', value);
+                    console.log('JSONbig.parse(value).lifespan: ', JSONbig.parse(value).lifespan);
+                    /*if (JSONbig.parse(value).lifespan == 1) {
                         console.log('valores a guadar en firebase');
                         console.log('contexto: : ', JSONbig.parse(value).name);
                         console.log('valor: : ', response.result.parameters.valor);
                         console.log('FB_id: ', sender);
-                    }
+                    }*/
                 });
 
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
