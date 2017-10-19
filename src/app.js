@@ -315,8 +315,8 @@ class FacebookBot {
             if (!this.sessionIds.has(sender)) {
                 this.sessionIds.set(sender, uuid.v4());
             }
-            console.log("Text", sender);
-            console.log("Text", text);
+            console.log("sender: ", sender);
+            console.log("Text: ", text);
             //send user's text to api.ai service
             let apiaiRequest = this.apiAiService.textRequest(text, {
                 sessionId: this.sessionIds.get(sender),
@@ -336,12 +336,16 @@ class FacebookBot {
                 let responseText = response.result.fulfillment.speech;
                 let responseData = response.result.fulfillment.data;
                 let responseMessages = response.result.fulfillment.messages;
-
-                console.log('doApiAiRequest response.result ', response.result);
+                //recuperando datos del request de api ai 
+                //console.log('doApiAiRequest response.result ', response.result);
                 console.log('doApiAiRequest sender: ', sender);
-                console.log('response.result.metadata.intentName: ', response.result.metadata.intentName);
+                //console.log('response.result.metadata.intentName: ', response.result.metadata.intentName);
                 console.log('response.result.parameters.valor: ', response.result.parameters.valor);
-                console.log('response.sessionId: ', response.sessionId);
+                //console.log('response.sessionId: ', response.sessionId);
+                //proceso alta 
+                response.result.contexts[].forEach(function(value) {
+                    console.log('response.result.contexts: ', value);
+                });
 
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
                     let facebookResponseData = responseData.facebook;
