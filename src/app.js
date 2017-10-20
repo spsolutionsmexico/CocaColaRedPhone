@@ -30,8 +30,26 @@ const FB_TEXT_LIMIT = 640;
 const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 
+//grabar usuario en arbol usuarios (registro completo)
+function guardarAlta(idusr) {
+    //arbol usurios 
+    try {
+        var db = firebase.database();
+        var ref = db.ref("produccion/usuarios/facebook/");
+        //var newRef = ref.push();
+        var newRef = ref.child(idusr);
+        newRef.child("fb_id").set(idusr).then(function(data) {
+            console.log('Firebase data: ', data);
+        })
+        return null;
+    } catch (err) {
+        console.log('err ', err);
+        return null;
+    }
+}
+
 //--guadar datos alta en fire base 
-function grabarAlta(idusr, contexto, contextoValor) {
+function grabardatosAlta(idusr, contexto, contextoValor) {
     console.log("conectando a FireBase");
     console.log('defaultApp.name: ' + defaultApp.name); // "[DEFAULT]"
     // arbol datos registro
@@ -371,10 +389,12 @@ class FacebookBot {
                         console.log('doApiAiRequest sender: ', sender);
                         console.log('response.result.parameters.valor: ', response.result.parameters.valor);
                         console.log('contexto: ', value.name);
-                        grabarAlta(sender, value.name, response.result.parameters.valor);
+                        grabardatosAlta(sender, value.name, response.result.parameters.valor);
+                    }
+                    if (value.name == 'alta-fin') {
+                        guardarAlta(sender);
                     }
                 });
-
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
                     let facebookResponseData = responseData.facebook;
                     this.doDataResponse(sender, facebookResponseData);
