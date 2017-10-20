@@ -30,6 +30,29 @@ const FB_TEXT_LIMIT = 640;
 const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 
+//--guadar datos alta en fire base 
+function grabarAlta(idusr, contexto, contextoValor) {
+    console.log("conectando a FireBase");
+    console.log('defaultApp.name: ' + defaultApp.name); // "[DEFAULT]"
+    try {
+        var db = firebase.database();
+        var ref = db.ref("produccion/usuarios/facebook/");
+        //var newRef = ref.push();
+        var newRef = ref.child(idusr);
+        newRef.child("idfb").set(idusr).then(function(data) {
+            console.log('Firebase data: ', data);
+        })
+        newRef.child(contexto).set(contextoValor).then(function(data) {
+            console.log('Firebase data: ', data);
+        })
+        return null;
+    } catch (err) {
+        console.log('err ', err);
+        return null;
+    }
+}
+//----- fin guardar datos alta fire base 
+
 class FacebookBot {
     constructor() {
         this.apiAiService = apiai(APIAI_ACCESS_TOKEN, { language: APIAI_LANG, requestSource: "fb" });
@@ -37,28 +60,6 @@ class FacebookBot {
         this.messagesDelay = 200;
     }
 
-    //--guadar datos alta en fire base 
-    grabarAlta(idusr, contexto, contextoValor) {
-            console.log("conectando a FireBase");
-            console.log('defaultApp.name: ' + defaultApp.name); // "[DEFAULT]"
-            try {
-                var db = firebase.database();
-                var ref = db.ref("produccion/usuarios/facebook/");
-                //var newRef = ref.push();
-                var newRef = ref.child(idusr);
-                newRef.child("idfb").set(idusr).then(function(data) {
-                    console.log('Firebase data: ', data);
-                })
-                newRef.child(contexto).set(contextoValor).then(function(data) {
-                    console.log('Firebase data: ', data);
-                })
-                return null;
-            } catch (err) {
-                console.log('err ', err);
-                return null;
-            }
-        }
-        //----- fin guardar datos alta fire base 
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
             console.log('Response as formatted message');
