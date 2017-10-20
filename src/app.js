@@ -9,6 +9,7 @@ const JSONbig = require('json-bigint');
 const async = require('async');
 //firebase 
 var firebase = require('firebase');
+//cofiguracion conexion firebase
 var config = {
     apiKey: process.env.FBASE_APIKEY, //"AIzaSyCsVB58GbuUmkwSSv4WAlk3FOuU786IrEg",
     authDomain: process.env.AUTH_DOMAIN, //"cocacola-redphone.firebaseapp.com",
@@ -19,6 +20,19 @@ var config = {
 };
 var defaultApp = firebase.initializeApp(config);
 var db = firebase.database();
+//geolocalizacion inverza 
+var NodeGeocoder = require('node-geocoder');
+var options = {
+    provider: 'google',
+
+    // Optional depending on the providers
+    httpAdapter: 'https', // Default
+    apiKey: 'AIzaSyCsVB58GbuUmkwSSv4WAlk3FOuU786IrEg', // for Mapquest, OpenCage, Google Premier
+    formatter: null // 'gpx', 'string', ...
+};
+
+var geocoder = NodeGeocoder(options);
+
 
 const REST_PORT = (process.env.PORT || 5000);
 const APIAI_ACCESS_TOKEN = process.env.APIAI_ACCESS_TOKEN;
@@ -572,7 +586,7 @@ app.get('/webhook/', (req, res) => {
 app.post('/webhook/', (req, res) => {
     try {
         const data = JSONbig.parse(req.body);
-
+        console.log("req = <--" + JSON.stringify(data) + '-->');
         if (data.entry) {
             let entries = data.entry;
             entries.forEach((entry) => {
@@ -585,9 +599,19 @@ app.post('/webhook/', (req, res) => {
                                 let locations = event.message.attachments.filter(a => a.type === "location");
 
                                 // delete all locations from original message
-                                event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
+                                //event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
 
                                 if (locations.length > 0) {
+                                    //gelocalizacion inversa
+                                    geocoder.reverse({ lat: event.message.attachments[0].payload.coordinates.lat, lon: event.message.attachments[0].payload.coordinates.long.toString() })
+                                        .then(function(res) {
+                                            console.log('JSON.stringify(res): ', JSON.stringify(res));
+                                        })
+                                        .catch(function(err) {
+                                            console.log(err);
+                                        });
+                                    return null;
+                                    //fin geolocalizacion inversa 
                                     locations.forEach(l => {
                                         let locationEvent = {
                                             sender: event.sender,
