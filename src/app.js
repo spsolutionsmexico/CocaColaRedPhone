@@ -370,7 +370,7 @@ class FacebookBot {
                         console.log('doApiAiRequest sender: ', sender);
                         console.log('response.result.parameters.valor: ', response.result.parameters.valor);
                         console.log('contexto: ', value.name);
-                        this.grabarAlta(sender, value.name, response.result.parameters.valor);
+                        grabarAlta(sender, value.name, response.result.parameters.valor);
                     }
                 });
 
