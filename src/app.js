@@ -65,6 +65,9 @@ function guardarAlta(idusr) {
 //--guadar datos alta en fire base 
 function grabardatosAlta(idusr, contexto, contextoValor) {
     console.log("conectando a FireBase");
+    console.log("idusr: ", idusr);
+    console.log("contexto: ", contexto);
+    console.log("contextoValor: ", contextoValor);
     console.log('defaultApp.name: ' + defaultApp.name); // "[DEFAULT]"
     // arbol datos registro
     try {
