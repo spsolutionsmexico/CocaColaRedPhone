@@ -37,7 +37,28 @@ class FacebookBot {
         this.messagesDelay = 200;
     }
 
-
+    //--guadar datos alta en fire base 
+    grabarAlta(idusr, contexto, contextoValor) {
+            console.log("conectando a FireBase");
+            console.log('defaultApp.name: ' + defaultApp.name); // "[DEFAULT]"
+            try {
+                var db = firebase.database();
+                var ref = db.ref("produccion/usuarios/facebook/");
+                //var newRef = ref.push();
+                var newRef = ref.child(idusr);
+                newRef.child("idfb").set(idusr).then(function(data) {
+                    console.log('Firebase data: ', data);
+                })
+                newRef.child(contexto).set(contextoValor).then(function(data) {
+                    console.log('Firebase data: ', data);
+                })
+                return null;
+            } catch (err) {
+                console.log('err ', err);
+                return null;
+            }
+        }
+        //----- fin guardar datos alta fire base 
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
             console.log('Response as formatted message');
@@ -348,6 +369,7 @@ class FacebookBot {
                         console.log('doApiAiRequest sender: ', sender);
                         console.log('response.result.parameters.valor: ', response.result.parameters.valor);
                         console.log('contexto: ', value.name);
+                        this.grabarAlta(sender, value.name, response.result.parameters.valor);
                     }
                 });
 
