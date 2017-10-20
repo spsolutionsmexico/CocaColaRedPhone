@@ -55,7 +55,7 @@ function grabardatosAlta(idusr, contexto, contextoValor) {
     // arbol datos registro
     try {
         var db = firebase.database();
-        var ref = db.ref("produccion/usuarios/facebook/");
+        var ref = db.ref("produccion/usuarios/datos/");
         //var newRef = ref.push();
         var newRef = ref.child(idusr);
         newRef.child("fb_id").set(idusr).then(function(data) {
