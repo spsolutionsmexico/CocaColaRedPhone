@@ -367,7 +367,7 @@ class FacebookBot {
     processMessageEvent(event) {
         const sender = event.sender.id.toString();
         const text = this.getEventText(event);
-        console.log('rocessMessageEvent event: ', event);
+        console.log('processMessageEvent event: ', event);
         if (text) {
 
             // Handle a text message from this sender
@@ -390,6 +390,7 @@ class FacebookBot {
     }
 
     doApiAiRequest(apiaiRequest, sender) {
+        console.log(' doApiAiRequest-apiaiRequest: ', apiaiRequest);
         apiaiRequest.on('response', (response) => {
             if (this.isDefined(response.result) && this.isDefined(response.result.fulfillment)) {
                 let responseText = response.result.fulfillment.speech;
