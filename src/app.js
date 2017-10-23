@@ -302,6 +302,7 @@ class FacebookBot {
 
     //which webhook event
     getEventText(event) {
+        console.log('getEventText event: ', event);
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
                 return event.message.quick_reply.payload;
@@ -366,7 +367,7 @@ class FacebookBot {
     processMessageEvent(event) {
         const sender = event.sender.id.toString();
         const text = this.getEventText(event);
-
+        console.log('rocessMessageEvent event: ', event);
         if (text) {
 
             // Handle a text message from this sender
@@ -608,7 +609,7 @@ app.post('/webhook/', (req, res) => {
                                     //gelocalizacion inversa
                                     geocoder.reverse({ lat: event.message.attachments[0].payload.coordinates.lat, lon: event.message.attachments[0].payload.coordinates.long.toString() })
                                         .then(function(res) {
-                                            //console.log('zipcode: ', res[0].zipcode);
+                                            console.log('zipcode: ', res[0].zipcode);
                                             // delete all locations from original message
                                             event.message.attachments = null; //event.message.attachments.filter(a => a.type !== "location");
                                             // se añade codigo postal como texto del mesaje 
