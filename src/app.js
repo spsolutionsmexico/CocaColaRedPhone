@@ -604,9 +604,10 @@ app.post('/webhook/', (req, res) => {
 
                                 // delete all locations from original message
                                 //event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
-
+                                var flagGeoCoder = false;
                                 if (locations.length > 0) {
                                     //gelocalizacion inversa
+                                    flagGeoCoder = true;
                                     geocoder.reverse({ lat: event.message.attachments[0].payload.coordinates.lat, lon: event.message.attachments[0].payload.coordinates.long.toString() })
                                         .then(function(res) {
                                             console.log('zipcode: ', res[0].zipcode);
@@ -638,8 +639,10 @@ app.post('/webhook/', (req, res) => {
                                     });
                                 }
                             }
-
-                            facebookBot.processMessageEvent(event);
+                            console.log('flagGeoCoder: ', flagGeoCoder);
+                            if (flagGeoCoder == false) {
+                                facebookBot.processMessageEvent(event);
+                            }
                         } else if (event.postback && event.postback.payload) {
                             if (event.postback.payload === "FACEBOOK_WELCOME") {
                                 facebookBot.processFacebookEvent(event);
