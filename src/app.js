@@ -598,10 +598,9 @@ app.post('/webhook/', (req, res) => {
                 if (messaging_events) {
                     messaging_events.forEach((event) => {
                         if (event.message && !event.message.is_echo) {
-
+                            let flagGeoCoder = false;
                             if (event.message.attachments) {
                                 let locations = event.message.attachments.filter(a => a.type === "location");
-                                var flagGeoCoder = false;
                                 // delete all locations from original message
                                 //event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
                                 if (locations.length > 0) {
