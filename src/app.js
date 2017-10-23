@@ -618,9 +618,7 @@ app.post('/webhook/', (req, res) => {
                                         })
                                         .then(function() {
                                             facebookBot.processMessageEvent(event);
-                                            return res.status(200).json({
-                                                status: "ok"
-                                            });
+                                            return null;
                                         })
                                         .catch(function(err) {
                                             console.log(err);
