@@ -345,7 +345,7 @@ class FacebookBot {
     processFacebookEvent(event) {
         const sender = event.sender.id.toString();
         const eventObject = this.getFacebookEvent(event);
-        console.log("processFacebookEvent Start");
+
         if (eventObject) {
 
             // Handle a text message from this sender
@@ -603,10 +603,10 @@ app.post('/webhook/', (req, res) => {
                                 let locations = event.message.attachments.filter(a => a.type === "location");
                                 // delete all locations from original message
                                 //event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
+                                event.message = event.message.filter(a => a.type !== "attachments");
                                 if (locations.length > 0) {
                                     //gelocalizacion inversa
                                     flagGeoCoder = true;
-                                    event.message.attachments = [];
                                     geocoder.reverse({ lat: event.message.attachments[0].payload.coordinates.lat, lon: event.message.attachments[0].payload.coordinates.long.toString() })
                                         .then(function(res) {
                                             console.log('zipcode: ', res[0].zipcode);
