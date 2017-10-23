@@ -643,8 +643,10 @@ app.post('/webhook/', (req, res) => {
                             }
                         } else if (event.postback && event.postback.payload) {
                             if (event.postback.payload === "FACEBOOK_WELCOME") {
+                                console.log('FACEBOOK_WELCOME');
                                 facebookBot.processFacebookEvent(event);
                             } else {
+                                console.log('event.postback && event.postback.payload');
                                 facebookBot.processMessageEvent(event);
                             }
                         }
