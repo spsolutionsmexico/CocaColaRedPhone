@@ -617,7 +617,10 @@ app.post('/webhook/', (req, res) => {
                                             event.message.text = res[0].zipcode;
                                         })
                                         .then(function() {
-                                            facebookBot.processMessageEvent(event)
+                                            facebookBot.processMessageEvent(event);
+                                            return res.status(200).json({
+                                                status: "ok"
+                                            });
                                         })
                                         .catch(function(err) {
                                             console.log(err);
