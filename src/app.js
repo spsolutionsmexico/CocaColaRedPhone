@@ -608,12 +608,14 @@ app.post('/webhook/', (req, res) => {
                                     //gelocalizacion inversa
                                     geocoder.reverse({ lat: event.message.attachments[0].payload.coordinates.lat, lon: event.message.attachments[0].payload.coordinates.long.toString() })
                                         .then(function(res) {
-                                            console.log('zipcode: ', res[0].zipcode);
+                                            //console.log('zipcode: ', res[0].zipcode);
                                             // delete all locations from original message
                                             event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
                                             // se añade codigo postal como texto del mesaje 
-                                            event.text = res[0].zipcode;
-                                            facebookBot.processMessageEvent(event);
+                                            event.text = res[0].zipcode
+                                        })
+                                        .then(function() {
+                                            facebookBot.processMessageEvent(event)
                                         })
                                         .catch(function(err) {
                                             console.log(err);
