@@ -343,9 +343,13 @@ class FacebookBot {
     }
 
     processFacebookEvent(event) {
+        //se deshabilita el envio de ubicaciones por corrdenadas a api ai y se cambian por texto
+        if (event.postback.payload === "FACEBOOK_LOCATION") {
+            return null;
+        }
         const sender = event.sender.id.toString();
         const eventObject = this.getFacebookEvent(event);
-        console.log('processFacebookEvent-event: ', event);
+        //console.log('processFacebookEvent-event: ', event);
         if (eventObject) {
 
             // Handle a text message from this sender
