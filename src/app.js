@@ -610,9 +610,10 @@ app.post('/webhook/', (req, res) => {
                                         .then(function(res) {
                                             //console.log('zipcode: ', res[0].zipcode);
                                             // delete all locations from original message
-                                            event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
+                                            event.message.attachments = null; //event.message.attachments.filter(a => a.type !== "location");
                                             // se añade codigo postal como texto del mesaje 
-                                            event.text = res[0].zipcode
+                                            event.text = res[0].zipcode;
+                                            event.message.tex = res[0].zipcode;
                                         })
                                         .then(function() {
                                             facebookBot.processMessageEvent(event)
