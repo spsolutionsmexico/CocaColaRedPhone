@@ -601,10 +601,9 @@ app.post('/webhook/', (req, res) => {
 
                             if (event.message.attachments) {
                                 let locations = event.message.attachments.filter(a => a.type === "location");
-
+                                var flagGeoCoder = false;
                                 // delete all locations from original message
                                 //event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
-                                var flagGeoCoder = false;
                                 if (locations.length > 0) {
                                     //gelocalizacion inversa
                                     flagGeoCoder = true;
