@@ -603,7 +603,6 @@ app.post('/webhook/', (req, res) => {
                                 let locations = event.message.attachments.filter(a => a.type === "location");
                                 // delete all locations from original message
                                 //event.message.attachments = event.message.attachments.filter(a => a.type !== "location");
-                                event.message = event.message.filter(a => a.type !== "attachments");
                                 if (locations.length > 0) {
                                     //gelocalizacion inversa
                                     flagGeoCoder = true;
@@ -611,7 +610,7 @@ app.post('/webhook/', (req, res) => {
                                         .then(function(res) {
                                             console.log('zipcode: ', res[0].zipcode);
                                             // delete all locations from original message
-                                            //event.message.attachments.filter(a => a.type !== "location");
+                                            event.message.attachments[0] = []; //event.message.attachments.filter(a => a.type !== "location");
                                             // se añade codigo postal como texto del mesaje 
                                             event.text = res[0].zipcode;
                                             event.message.text = res[0].zipcode;
