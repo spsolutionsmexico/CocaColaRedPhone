@@ -46,7 +46,8 @@ const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 
 //grabar usuario en arbol usuarios (registro completo)
 function guardarAlta(idusr) {
-    //arbol usurios 
+    //arbol usurios
+    console.log('guardar ALta ');
     try {
         var db = firebase.database();
         var ref = db.ref("produccion/usuarios/facebook/");
@@ -349,7 +350,6 @@ class FacebookBot {
         }
         const sender = event.sender.id.toString();
         const eventObject = this.getFacebookEvent(event);
-        //console.log('processFacebookEvent-event: ', event);
         if (eventObject) {
 
             // Handle a text message from this sender
@@ -371,7 +371,6 @@ class FacebookBot {
     processMessageEvent(event) {
         const sender = event.sender.id.toString();
         const text = this.getEventText(event);
-        console.log('processMessageEvent event: ', event);
         if (text) {
 
             // Handle a text message from this sender
@@ -394,7 +393,6 @@ class FacebookBot {
     }
 
     doApiAiRequest(apiaiRequest, sender) {
-        console.log(' doApiAiRequest-apiaiRequest: ', apiaiRequest);
         apiaiRequest.on('response', (response) => {
             if (this.isDefined(response.result) && this.isDefined(response.result.fulfillment)) {
                 let responseText = response.result.fulfillment.speech;
@@ -408,13 +406,14 @@ class FacebookBot {
                 //console.log('response.sessionId: ', response.sessionId);
                 //proceso alta 
                 response.result.contexts.forEach(function(value) {
+                    console.log('value: ', value);
                     if (value.lifespan == 1) {
                         console.log('doApiAiRequest sender: ', sender);
                         console.log('response.result.parameters.valor: ', response.result.parameters.valor);
                         console.log('contexto: ', value.name);
                         grabardatosAlta(sender, value.name, response.result.parameters.valor);
                     }
-                    if (value.name == 'alta-fin') {
+                    if (value.name === 'alta-fin') {
                         guardarAlta(sender);
                     }
                 });
@@ -627,7 +626,6 @@ app.post('/webhook/', (req, res) => {
                                         .catch(function(err) {
                                             console.log(err);
                                         });
-                                    //return null;
                                     //fin geolocalizacion inversa 
                                     locations.forEach(l => {
                                         let locationEvent = {
