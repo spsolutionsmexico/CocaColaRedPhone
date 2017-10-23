@@ -606,7 +606,7 @@ app.post('/webhook/', (req, res) => {
                                 if (locations.length > 0) {
                                     //gelocalizacion inversa
                                     flagGeoCoder = true;
-                                    event.message.attachments = new Array[];
+                                    event.message.attachments = [];
                                     geocoder.reverse({ lat: event.message.attachments[0].payload.coordinates.lat, lon: event.message.attachments[0].payload.coordinates.long.toString() })
                                         .then(function(res) {
                                             console.log('zipcode: ', res[0].zipcode);
