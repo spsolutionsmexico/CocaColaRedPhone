@@ -385,11 +385,11 @@ class FacebookBot {
                     console.log('return cod-alta');
                     return 'cod-alta';
                 }
+                if (event.message.text == "Reto1") {
+                    console.log('llamando solicitudReto');
+                    solicitudReto();
+                }
                 return event.message.text;
-            }
-            if (event.message.text == "Reto1") {
-                console.log('llamando solicitudReto');
-                solicitudReto();
             }
         }
 
@@ -452,8 +452,8 @@ class FacebookBot {
             if (!this.sessionIds.has(sender)) {
                 this.sessionIds.set(sender, uuid.v4());
             }
-            console.log("sender: ", sender);
-            console.log("Text: ", text);
+            //console.log("sender: ", sender);
+            //console.log("Text: ", text);
             //send user's text to api.ai service
             let apiaiRequest = this.apiAiService.textRequest(text, {
                 sessionId: this.sessionIds.get(sender),
