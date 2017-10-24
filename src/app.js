@@ -103,7 +103,7 @@ function solicitudReto() {
                 "text": "¿Deseas participar en un reto?",
                 "buttons": [{
                     "type": "postback",
-                    "title": "Simon",
+                    "title": "Si, deseo participar",
                     "payload": "cam010917"
                 }]
             }
@@ -384,6 +384,7 @@ class FacebookBot {
                 if (event.message.text == "Reto1") {
                     console.log('llamando solicitudReto');
                     solicitudReto();
+                    return null;
                 }
                 return event.message.text;
             }
