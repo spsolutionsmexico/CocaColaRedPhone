@@ -117,7 +117,7 @@ function solicitudReto() {
                 snap.forEach(function(childSnap) {
                     var reg = childSnap.val();
                     console.log('registro= ', reg.fb_id);
-                    sendAlertaReto(reg.fbid, messageData);
+                    sendAlertaReto(reg.fb_id, messageData);
                 })
                 callback(null, 'OK');
             });
