@@ -92,7 +92,7 @@ function grabardatosAlta(idusr, contexto, contextoValor) {
 
 //funcion que envia a usuarios registrados mensaje para iniciar un reto------------------------ 
 function solicitudReto(callback) {
-
+    console.log('Inicia Solicitud Reto');
     var ref = db.ref("produccion/usuarios/facebook/");
     var count = 0;
     let messageData = {
@@ -116,7 +116,7 @@ function solicitudReto(callback) {
             ref.on("value", function(snap) {
                 snap.forEach(function(childSnap) {
                     var reg = childSnap.val();
-                    console.log('registro= ', reg.fbid);
+                    console.log('registro= ', reg.fb_id);
                     sendAlertaReto(reg.fbid, messageData);
                 })
                 callback(null, 'OK');
@@ -388,7 +388,8 @@ class FacebookBot {
                 return event.message.text;
             }
             if (event.message.text == "Reto1") {
-                this.solicitudReto();
+                console.log('llamando solicitudReto');
+                solicitudReto();
             }
         }
 
