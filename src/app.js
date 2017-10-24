@@ -127,7 +127,7 @@ function solicitudReto(callback) {
         }
     }
 
-    function sendAlertReto(sender, messageData) {
+    function sendAlertaReto(sender, messageData) {
         console.log('sendFBMessage sender =', sender);
         return new Promise((resolve, reject) => {
             request({
