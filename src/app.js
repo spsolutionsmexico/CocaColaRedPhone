@@ -154,7 +154,6 @@ function solicitudReto() {
     asyncSqrt(ref, function(ref, result) {
         console.log('END asyncSqrt and result =', result);
     });
-
 }
 //-----------------------------------------------
 
