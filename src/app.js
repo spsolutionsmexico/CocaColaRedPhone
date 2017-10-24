@@ -91,7 +91,7 @@ function grabardatosAlta(idusr, contexto, contextoValor) {
 //----- fin guardar datos alta fire base 
 
 //funcion que envia a usuarios registrados mensaje para iniciar un reto------------------------ 
-function solicitudReto(callback) {
+function solicitudReto() {
     console.log('Inicia Solicitud Reto');
     var ref = db.ref("produccion/usuarios/facebook/");
     var count = 0;
@@ -151,11 +151,8 @@ function solicitudReto(callback) {
             });
         });
     }
-
-
     asyncSqrt(ref, function(ref, result) {
         console.log('END asyncSqrt and result =', result);
-        callback(null, result);
     });
 
 }
