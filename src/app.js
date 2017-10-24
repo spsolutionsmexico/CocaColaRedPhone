@@ -90,6 +90,77 @@ function grabardatosAlta(idusr, contexto, contextoValor) {
 }
 //----- fin guardar datos alta fire base 
 
+//funcion que envia a usuarios registrados mensaje para iniciar un reto------------------------ 
+function solicitudReto(callback) {
+
+    var ref = db.ref("produccion/usuarios/facebook/");
+    var count = 0;
+    let messageData = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "button",
+                "text": "¿Deseas participar en un reto?",
+                "buttons": [{
+                    "type": "postback",
+                    "title": "Simon",
+                    "payload": "cam010917"
+                }]
+            }
+        }
+    }
+
+    function asyncSqrt(ref, callback) {
+        try {
+            console.log('START execution');
+            ref.on("value", function(snap) {
+                snap.forEach(function(childSnap) {
+                    var reg = childSnap.val();
+                    console.log('registro= ', reg.fbid);
+                    sendAlertaReto(reg.fbid, messageData);
+                })
+                callback(null, 'OK');
+            });
+        } catch (err) {
+            console.log('err ', err);
+            return null;
+        }
+    }
+
+    function sendAlertReto(sender, messageData) {
+        console.log('sendFBMessage sender =', sender);
+        return new Promise((resolve, reject) => {
+            request({
+                url: 'https://graph.facebook.com/v2.6/me/messages',
+                qs: { access_token: FB_PAGE_ACCESS_TOKEN },
+                method: 'POST',
+                json: {
+                    recipient: { id: sender },
+                    message: messageData,
+                }
+            }, (error, response) => {
+                if (error) {
+                    console.log('Error sending message: ', error);
+                    reject(error);
+                } else if (response.body.error) {
+                    console.log('Error: ', response.body.error);
+                    reject(new Error(response.body.error));
+                }
+
+                resolve();
+            });
+        });
+    }
+
+
+    asyncSqrt(ref, function(ref, result) {
+        console.log('END asyncSqrt and result =', result);
+        callback(null, result);
+    });
+
+}
+//-----------------------------------------------
+
 class FacebookBot {
     constructor() {
         this.apiAiService = apiai(APIAI_ACCESS_TOKEN, { language: APIAI_LANG, requestSource: "fb" });
@@ -308,13 +379,16 @@ class FacebookBot {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
                 return event.message.quick_reply.payload;
             }
-
+            //iniciar proceso del alta del usuario
             if (event.message.text) {
                 if (event.message.text == "Alta") {
                     console.log('return cod-alta');
                     return 'cod-alta';
                 }
                 return event.message.text;
+            }
+            if (event.message.text == "Reto1") {
+                this.solicitudReto();
             }
         }
 
