@@ -107,12 +107,12 @@ function solicitudReto() {
                     "subtitle": "podras resivir premios",
                     "buttons": [{
                             "type": "postback",
-                            "title": "Si deseo partisipar ",
+                            "title": "SI ",
                             "payload": "cam010917"
                         },
                         {
                             "type": "postback",
-                            "title": "NO deseo partisipar",
+                            "title": "NO",
                             "payload": "cam010917"
                         }
                     ]
