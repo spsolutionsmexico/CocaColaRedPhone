@@ -101,19 +101,22 @@ function solicitudReto() {
         "attachment": {
             "type": "template",
             "payload": {
-                "template_type": "button",
-                "text": "¿Deseas participar en un reto?",
-                "buttons": [{
-                        "type": "postback",
-                        "title": "Si deseo partisipar en el reto ",
-                        "payload": "cam010917"
-                    },
-                    {
-                        "type": "postback",
-                        "title": "NO deseo partisipar en el reto",
-                        "payload": "cam010917"
-                    }
-                ]
+                "template_type": "generic",
+                "elements": [{
+                    "title": "Deseas participar en una encuesta ?",
+                    "subtitle": "podras resivir premios",
+                    "buttons": [{
+                            "type": "postback",
+                            "title": "Si deseo partisipar ",
+                            "payload": "cam010917"
+                        },
+                        {
+                            "type": "postback",
+                            "title": "NO deseo partisipar",
+                            "payload": "cam010917"
+                        }
+                    ]
+                }]
             }
         }
     }
