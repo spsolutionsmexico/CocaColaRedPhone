@@ -20,6 +20,8 @@ var config = {
 };
 var defaultApp = firebase.initializeApp(config);
 var db = firebase.database();
+const REF_ALTA = process.env.REF_ALTA;
+const REF_ALTA_DATA = process.env.REF_ALTA_DATA;
 //geolocalizacion inverza 
 var NodeGeocoder = require('node-geocoder');
 var options = {
@@ -50,7 +52,7 @@ function guardarAlta(idusr) {
     console.log('guardar ALta ');
     try {
         var db = firebase.database();
-        var ref = db.ref("produccion/usuarios/facebook/");
+        var ref = db.ref(REF_ALTA);
         //var newRef = ref.push();
         var newRef = ref.child(idusr);
         newRef.child("fb_id").set(idusr).then(function(data) {
@@ -73,8 +75,8 @@ function grabardatosAlta(idusr, contexto, contextoValor) {
     // arbol datos registro
     try {
         var db = firebase.database();
-        var ref = db.ref("produccion/usuarios/datos/");
-        //var newRef = ref.push();
+        var ref = db.ref(REF_ALTA_DATA)
+            //var newRef = ref.push();
         var newRef = ref.child(idusr);
         newRef.child("fb_id").set(idusr).then(function(data) {
             console.log('Firebase data: ', data);
@@ -103,12 +105,12 @@ function solicitudReto() {
                 "text": "¿Deseas participar en un reto?",
                 "buttons": [{
                         "type": "postback",
-                        "title": "Si",
+                        "title": "Si     ",
                         "payload": "cam010917"
                     },
                     {
                         "type": "postback",
-                        "title": "NO",
+                        "title": "NO     ",
                         "payload": "cam010917"
                     }
                 ]
