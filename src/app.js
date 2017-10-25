@@ -105,12 +105,12 @@ function solicitudReto() {
                 "text": "¿Deseas participar en un reto?",
                 "buttons": [{
                         "type": "postback",
-                        "title": "Si     ",
+                        "title": "Si deseo partisipar en el reto ",
                         "payload": "cam010917"
                     },
                     {
                         "type": "postback",
-                        "title": "NO     ",
+                        "title": "NO deseo partisipar en el reto",
                         "payload": "cam010917"
                     }
                 ]
