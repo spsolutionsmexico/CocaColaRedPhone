@@ -102,9 +102,8 @@ function solicitudReto() {
             "type": "template",
             "payload": {
                 "template_type": "open_graph",
+                "text": "¿Deseas participar en un reto?",
                 "elements": [{
-                    "title": "Deseas participar en una encuesta ?",
-                    "subtitle": "podras resivir premios",
                     "buttons": [{
                             "type": "postback",
                             "title": "SI deseo participar ",
