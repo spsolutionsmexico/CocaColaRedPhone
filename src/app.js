@@ -101,9 +101,11 @@ function solicitudReto() {
         "attachment": {
             "type": "template",
             "payload": {
-                "template_type": "open_graph",
-                "text": "¿Deseas participar en un reto?",
+                "template_type": "list",
+                "top_element_style": "compact",
                 "elements": [{
+                    "title": "deseas participar en una encusta ?",
+                    "subtitle": "obten recompenzas ",
                     "buttons": [{
                             "type": "postback",
                             "title": "SI deseo participar ",
