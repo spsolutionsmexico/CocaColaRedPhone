@@ -101,7 +101,7 @@ function solicitudReto() {
         "attachment": {
             "type": "template",
             "payload": {
-                "template_type": "generic",
+                "template_type": "open_graph",
                 "elements": [{
                     "title": "Deseas participar en una encuesta ?",
                     "subtitle": "podras resivir premios",
