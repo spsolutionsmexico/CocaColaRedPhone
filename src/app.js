@@ -110,11 +110,7 @@ function solicitudReto() {
                             "title": "SI           ",
                             "payload": "Camp1"
                         },
-                        {
-                            "type": "postback",
-                            "title": "",
-                            "payload": ""
-                        },
+                        {},
                         {
                             "type": "postback",
                             "title": "NO",
