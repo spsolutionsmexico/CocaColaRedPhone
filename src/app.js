@@ -107,31 +107,19 @@ function solicitudReto() {
                         "title": "deseas participar en una encusta ?",
                         "subtitle": "obten recompenzas ",
                         "buttons": [{
-                                "type": "postback",
-                                "title": "SI deseo participar ",
-                                "payload": "Camp1"
-                            },
-                            {
-                                "type": "postback",
-                                "title": "NO deseo participar ",
-                                "payload": "Nada"
-                            }
-                        ]
+                            "type": "postback",
+                            "title": "SI deseo participar ",
+                            "payload": "Camp1"
+                        }]
                     },
                     {
                         "title": "deseas participar en una encusta ?",
                         "subtitle": "obten recompenzas ",
                         "buttons": [{
-                                "type": "postback",
-                                "title": "SI deseo participar ",
-                                "payload": "Camp1"
-                            },
-                            {
-                                "type": "postback",
-                                "title": "NO deseo participar ",
-                                "payload": "Nada"
-                            }
-                        ]
+                            "type": "postback",
+                            "title": "NO deseo participar ",
+                            "payload": "Nada"
+                        }]
                     }
                 ]
             }
