@@ -108,12 +108,17 @@ function solicitudReto() {
                     "buttons": [{
                             "type": "postback",
                             "title": "SI           ",
-                            "payload": "cam010917"
+                            "payload": "Camp1"
                         },
                         {
                             "type": "postback",
-                            "title": "NO            ",
-                            "payload": "cam010917"
+                            "title": "",
+                            "payload": ""
+                        },
+                        {
+                            "type": "postback",
+                            "title": "NO",
+                            "payload": "Nada"
                         }
                     ]
                 }]
