@@ -108,7 +108,7 @@ function solicitudReto() {
                         "subtitle": "obten recompenzas ",
                         "buttons": [{
                             "type": "postback",
-                            "url": "https://",
+                            "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101",
                             "messenger_extensions": true,
                             "webview_height_ratio": "tall",
                             "title": "SI deseo participar ",
