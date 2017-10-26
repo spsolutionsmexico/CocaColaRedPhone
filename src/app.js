@@ -494,6 +494,7 @@ class FacebookBot {
                 let responseMessages = response.result.fulfillment.messages;
                 //recuperando datos del request de api ai 
                 console.log('doApiAiRequest response.result ', response.result);
+                console.log('response.result.fulfillment.messages[2]: ', JSON.stringify(response.result.fulfillment.messages[3]));
                 //console.log('doApiAiRequest sender: ', sender);
                 //console.log('response.result.metadata.intentName: ', response.result.metadata.intentName);
                 //console.log('response.result.parameters.valor: ', response.result.parameters.valor);
