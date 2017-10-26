@@ -107,23 +107,24 @@ function solicitudReto() {
                         "title": "deseas participar en una encusta ?",
                         "subtitle": "obten recompenzas ",
                         "buttons": [{
+                            "title": "Shop Now",
                             "type": "web_url",
                             "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101",
                             "messenger_extensions": true,
                             "webview_height_ratio": "tall",
-                            "title": "SI deseo participar ",
-                            "payload": "Camp1"
+                            "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
                         }]
                     },
                     {
                         "title": "deseas participar en una encusta ?",
                         "subtitle": "obten recompenzas ",
                         "buttons": [{
-                            "type": "postback",
+                            "title": "Shop Now",
+                            "type": "web_url",
+                            "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101",
                             "messenger_extensions": true,
                             "webview_height_ratio": "tall",
-                            "title": "NO deseo participar ",
-                            "payload": "Nada"
+                            "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
                         }]
                     }
                 ]
