@@ -108,6 +108,7 @@ function solicitudReto() {
                         "subtitle": "obten recompenzas ",
                         "buttons": [{
                             "type": "postback",
+                            "messenger_extensions": true,
                             "webview_height_ratio": "tall",
                             "title": "SI deseo participar ",
                             "payload": "Camp1"
@@ -118,6 +119,7 @@ function solicitudReto() {
                         "subtitle": "obten recompenzas ",
                         "buttons": [{
                             "type": "postback",
+                            "messenger_extensions": true,
                             "webview_height_ratio": "tall",
                             "title": "NO deseo participar ",
                             "payload": "Nada"
