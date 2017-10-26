@@ -108,6 +108,7 @@ function solicitudReto() {
                         "subtitle": "obten recompenzas ",
                         "buttons": [{
                             "type": "postback",
+                            "url": "https://",
                             "messenger_extensions": true,
                             "webview_height_ratio": "tall",
                             "title": "SI deseo participar ",
