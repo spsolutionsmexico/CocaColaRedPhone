@@ -109,10 +109,10 @@ function solicitudReto() {
                         "buttons": [{
                             "title": "Shop Now",
                             "type": "web_url",
-                            "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101",
+                            "url": "https://www.facebook.com/Red-Phone-115397899139282/",
                             "messenger_extensions": true,
                             "webview_height_ratio": "tall",
-                            "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                            "fallback_url": "https://www.facebook.com/Red-Phone-115397899139282/"
                         }]
                     },
                     {
@@ -121,10 +121,10 @@ function solicitudReto() {
                         "buttons": [{
                             "title": "Shop Now",
                             "type": "web_url",
-                            "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101",
+                            "url": "https://www.facebook.com/Red-Phone-115397899139282/",
                             "messenger_extensions": true,
                             "webview_height_ratio": "tall",
-                            "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                            "fallback_url": "https://www.facebook.com/Red-Phone-115397899139282/"
                         }]
                     }
                 ]
