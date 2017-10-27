@@ -93,7 +93,7 @@ function grabardatosAlta(idusr, contexto, contextoValor) {
 //----- fin guardar datos alta fire base 
 
 //funcion que envia a usuarios registrados mensaje para iniciar un reto------------------------ 
-function solicitudReto() {
+function solicitudReto(nombre) {
     console.log('Inicia Solicitud Reto');
     var ref = db.ref("produccion/usuarios/facebook/");
     var count = 0;
@@ -102,12 +102,12 @@ function solicitudReto() {
         "quick_replies": [{
                 "content_type": "text",
                 "title": "Search",
-                "payload": "<POSTBACK_PAYLOAD>",
+                "payload": nombre + '-SI',
             },
             {
                 "content_type": "text",
                 "title": "Something Else",
-                "payload": "<POSTBACK_PAYLOAD>"
+                "payload": nombre + '-NO'
             }
         ]
     }
@@ -383,9 +383,9 @@ class FacebookBot {
                     console.log('return cod-alta');
                     return 'cod-alta';
                 }
-                if (event.message.text == "Reto1") {
+                if (event.message.text.toString.indexOf('lanza')) {
                     console.log('llamando solicitudReto');
-                    solicitudReto();
+                    solicitudReto('RETO1');
                     return null;
                 }
                 return event.message.text;
