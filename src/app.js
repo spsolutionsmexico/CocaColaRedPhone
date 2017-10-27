@@ -489,8 +489,10 @@ class FacebookBot {
                         console.log('doApiAiRequest sender: ', sender);
                         console.log('response.result.parameters.valor: ', response.result.parameters.valor);
                         console.log('contexto: ', value.name);
-                        var arr1 = value.name.split("-", 2);
-                        grabardatosAlta(sender, arr1[1], response.result.parameters.valor);
+                        if (value.name.indexOf('Alta') === 0) {
+                            var arr1 = value.name.split("-", 2);
+                            grabardatosAlta(sender, arr1[1], response.result.parameters.valor);
+                        }
                     }
                     if (value.name === 'alta-fin') {
                         guardarAlta(sender);
