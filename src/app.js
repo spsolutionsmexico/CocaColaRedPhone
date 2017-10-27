@@ -99,23 +99,21 @@ function solicitudReto() {
     var count = 0;
     let messageData = {
         "attachment": {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "text": "¿Deseas participar en un reto?",
-                    "quick_replies": [{
-                            "content_type": "text",
-                            "title": "SI",
-                            "payload": "Reto-SI"
-                        },
-                        {
-                            "content_type": "text",
-                            "title": "NO",
-                            "payload": "Reto-NO"
-                        }
-                    ]
-                }
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "text": "¿Deseas participar en un reto?",
+                "quick_replies": [{
+                        "content_type": "text",
+                        "title": "SI",
+                        "payload": "Reto-SI"
+                    },
+                    {
+                        "content_type": "text",
+                        "title": "NO",
+                        "payload": "Reto-NO"
+                    }
+                ]
             }
         }
     }
