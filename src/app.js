@@ -99,35 +99,23 @@ function solicitudReto() {
     var count = 0;
     let messageData = {
         "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "list",
-                "top_element_style": "compact",
-                "elements": [{
-                        "title": "deseas participar en una encusta ?",
-                        "subtitle": "obten recompenzas ",
-                        "buttons": [{
-                            "title": "Shop Now",
-                            "type": "web_url",
-                            "url": "https://www.facebook.com/Red-Phone-115397899139282/",
-                            "messenger_extensions": true,
-                            "webview_height_ratio": "tall",
-                            "fallback_url": "https://www.facebook.com/Red-Phone-115397899139282/"
-                        }]
-                    },
-                    {
-                        "title": "deseas participar en una encusta ?",
-                        "subtitle": "obten recompenzas ",
-                        "buttons": [{
-                            "title": "Shop Now",
-                            "type": "web_url",
-                            "url": "https://www.facebook.com/Red-Phone-115397899139282/",
-                            "messenger_extensions": true,
-                            "webview_height_ratio": "tall",
-                            "fallback_url": "https://www.facebook.com/Red-Phone-115397899139282/"
-                        }]
-                    }
-                ]
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "text": "¿Deseas participar en un reto?",
+                    "quick_replies": [{
+                            "content_type": "text",
+                            "title": "SI",
+                            "payload": "Reto-SI"
+                        },
+                        {
+                            "content_type": "text",
+                            "title": "NO",
+                            "payload": "Reto-NO"
+                        }
+                    ]
+                }
             }
         }
     }
