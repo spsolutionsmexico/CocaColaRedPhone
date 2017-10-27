@@ -383,13 +383,12 @@ class FacebookBot {
                     console.log('return cod-alta');
                     return 'cod-alta';
                 }
-                //console.log('event.message.text.toString: ', event.message.text.indexOf('Lanzar-'));
-                console.log('event.message.text.split("-", 2): ', event.message.text.split("-", 2));
-                //if (event.message.text.toString.indexOf('lanza')) {
-                //    console.log('llamando solicitudReto');
-                //solicitudReto('RETO1');
-                //return null;
-                //}
+                if ('event.message.text.toString: ', event.message.text.indexOf('Lanzar-') > -1); {
+                    var arr1 = event.message.text.split("-", 2);
+                    console.log('llamando solicitudReto');
+                    solicitudReto(arr1[1]);
+                    return null;
+                }
                 return event.message.text;
             }
         }
