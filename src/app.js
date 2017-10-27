@@ -98,15 +98,15 @@ function solicitudReto(nombre) {
     var ref = db.ref("produccion/usuarios/facebook/");
     var count = 0;
     let messageData = {
-        "text": "Here's a quick reply!",
+        "text": "Quieres participar en un reto ?",
         "quick_replies": [{
                 "content_type": "text",
-                "title": "Search",
+                "title": "SI",
                 "payload": nombre + '-SI',
             },
             {
                 "content_type": "text",
-                "title": "Something Else",
+                "title": "NO",
                 "payload": nombre + '-NO'
             }
         ]
@@ -489,7 +489,8 @@ class FacebookBot {
                         console.log('doApiAiRequest sender: ', sender);
                         console.log('response.result.parameters.valor: ', response.result.parameters.valor);
                         console.log('contexto: ', value.name);
-                        grabardatosAlta(sender, value.name, response.result.parameters.valor);
+                        var arr1 = value.name.split("-", 2);
+                        grabardatosAlta(sender, arr1[1], response.result.parameters.valor);
                     }
                     if (value.name === 'alta-fin') {
                         guardarAlta(sender);
