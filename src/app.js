@@ -384,7 +384,7 @@ class FacebookBot {
                     return 'cod-alta';
                 }
                 console.log('event.message.text.indexOf(Lanzar-)', event.message.text.indexOf('Lanzar-'));
-                if (event.message.text.indexOf('Lanzar-') === 0); {
+                if (event.message.text.indexOf('Lanzar-') === 0) {
                     var arr1 = event.message.text.split("-", 2);
                     console.log('arr1: ', arr1);
                     console.log('llamando solicitudReto');
