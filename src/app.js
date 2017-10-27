@@ -383,7 +383,8 @@ class FacebookBot {
                     console.log('return cod-alta');
                     return 'cod-alta';
                 }
-                console.log('event.message.text.toString: ', event.message.text.indexOf('lanza'));
+                //console.log('event.message.text.toString: ', event.message.text.indexOf('Lanzar-'));
+                console.log('event.message.text.split("-", 2): ', event.message.text.split("-", 2));
                 //if (event.message.text.toString.indexOf('lanza')) {
                 //    console.log('llamando solicitudReto');
                 //solicitudReto('RETO1');
