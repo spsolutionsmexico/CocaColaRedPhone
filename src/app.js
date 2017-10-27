@@ -98,24 +98,18 @@ function solicitudReto() {
     var ref = db.ref("produccion/usuarios/facebook/");
     var count = 0;
     let messageData = {
-        "attachment": {
-            "type": "template",
-            "payload": {
-                "template_type": "generic",
-                "text": "¿Deseas participar en un reto?",
-                "quick_replies": [{
-                        "content_type": "text",
-                        "title": "SI",
-                        "payload": "Reto-SI"
-                    },
-                    {
-                        "content_type": "text",
-                        "title": "NO",
-                        "payload": "Reto-NO"
-                    }
-                ]
+        "text": "Here's a quick reply!",
+        "quick_replies": [{
+                "content_type": "text",
+                "title": "Search",
+                "payload": "<POSTBACK_PAYLOAD>",
+            },
+            {
+                "content_type": "text",
+                "title": "Something Else",
+                "payload": "<POSTBACK_PAYLOAD>"
             }
-        }
+        ]
     }
 
     function asyncSqrt(ref, callback) {
