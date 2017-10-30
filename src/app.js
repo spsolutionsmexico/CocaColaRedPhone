@@ -22,6 +22,7 @@ var defaultApp = firebase.initializeApp(config);
 var db = firebase.database();
 const REF_ALTA = process.env.REF_ALTA;
 const REF_ALTA_DATA = process.env.REF_ALTA_DATA;
+const REF_RETO = process.env.REF_RETO;
 //geolocalizacion inverza 
 var NodeGeocoder = require('node-geocoder');
 var options = {
@@ -76,7 +77,6 @@ function grabardatosAlta(idusr, contexto, contextoValor) {
     try {
         var db = firebase.database();
         var ref = db.ref(REF_ALTA_DATA)
-            //var newRef = ref.push();
         var newRef = ref.child(idusr);
         newRef.child("fb_id").set(idusr).then(function(data) {
             console.log('Firebase data: ', data);
@@ -158,6 +158,33 @@ function solicitudReto(nombre) {
     });
 }
 //-----------------------------------------------
+//--guadar datos de los retos en firebase 
+function grabardatosContexto(idusr, contexto, contextoValor, idreto) {
+    console.log("conectando a FireBase");
+    console.log("idusr: ", idusr);
+    console.log("contexto: ", contexto);
+    console.log("contextoValor: ", contextoValor);
+    console.log("idreto: ", idreto);
+    console.log('defaultApp.name: ' + defaultApp.name); // "[DEFAULT]"
+    // arbol datos registro
+    try {
+        var db = firebase.database();
+        var ref = db.ref(REF_RETO)
+        var newRefReto = ref.child(idreto);
+        var newRefUsr = newRefReto.child(idusr);
+        newRefUsr.child("fb_id").set(idusr).then(function(data) {
+            console.log('Firebase data: ', data);
+        })
+        newRefUsr.child(contexto).set(contextoValor).then(function(data) {
+            console.log('Firebase data: ', data);
+        })
+        return null;
+    } catch (err) {
+        console.log('err ', err);
+        return null;
+    }
+}
+//----- fin guardar datos alta fire base 
 
 class FacebookBot {
     constructor() {
@@ -493,6 +520,12 @@ class FacebookBot {
                         if (arr1[0] === 'alta') {
                             grabardatosAlta(sender, arr1[1], response.result.parameters.valor);
                         }
+                        //es un reto 
+                        else {
+                            console.log('invocar guadar datos contexto');
+                            grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
+                        }
+
                     }
                     if (value.name === 'alta-fin') {
                         guardarAlta(sender);
