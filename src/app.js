@@ -444,7 +444,7 @@ class FacebookBot {
                         console.log('event.timestamp =', event.timestamp);
                         var t = new Date(event.timestamp);
                         var arrDate = t.toJSON().split("T");
-                        console.log('t.getHours(): ', t.getHours());
+                        console.log('t.getHours(): ', t.getHours() - 6);
                         console.log('Date: ', arrDate[0]);
                         console.log('Time: ', arrDate[1]);
                         var arrTime = arrDate[1].split(":");
