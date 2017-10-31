@@ -440,9 +440,9 @@ class FacebookBot {
                 console.log('event.message.text.indexOf(Lanzar-)', event.message.text.indexOf('Lanzar-'));
                 if (event.message.text.indexOf('Lanzar-') === 0) {
                     //fecha y hora 
-                    var t = new Date(event.timestamp);
-                    var formatted = t.format("dd.mm.yyyy hh:MM:ss");
-                    console.log('Fecha=', formatted);
+                    //var t = new Date(event.timestamp);
+                    //var formatted = t.format("dd.mm.yyyy hh:MM:ss");
+                    console.log('Fecha=', event.timestamp);
                     //---------
                     var arr1 = event.message.text.split("-", 2);
                     console.log('arr1: ', arr1);
