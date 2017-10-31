@@ -443,8 +443,8 @@ class FacebookBot {
                     try {
                         console.log('event.timestamp =', event.timestamp);
                         var t = new Date(event.timestamp);
-                        var formatted = t.format("dd.mm.yyyy hh:MM:ss");
-                        console.log('Fecha Formato=', formatted);
+                        console.log('Fecha t=', t);
+                        console.log('Fecha Formato=', dateTime.toISOString());
                     } catch (err) {
                         console.log('err ', err);
                     }
