@@ -222,9 +222,11 @@ function fechaMexico(fbTimeStamp) {
         var hora = arrDate[1].split(".")
         console.log('Fecha: ', arrDate[0]);
         console.log('Hora:', hora[0]);
-        retur[arrDate[0], hora[0]]
+        return [arrDate[0], hora[0]];
+
     } catch (err) {
         console.log('err ', err);
+        return null;
     }
 }
 class FacebookBot {
