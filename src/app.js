@@ -443,8 +443,9 @@ class FacebookBot {
                     try {
                         console.log('event.timestamp =', event.timestamp);
                         var t = new Date(event.timestamp);
-                        console.log('Fecha t=', t);
-                        console.log('Fecha Formato=', dateTime.toISOString());
+                        console.log('Fecha =', t.getDate);
+                        console.log('Hora =', t.getDate);
+                        console.log('t.getTimezoneOffset =', t.getTimezoneOffset);
                     } catch (err) {
                         console.log('err ', err);
                     }
