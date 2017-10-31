@@ -184,8 +184,35 @@ function grabardatosContexto(idusr, contexto, contextoValor, idreto) {
         return null;
     }
 }
-//----- fin guardar datos alta fire base 
+//----- fin guardar datos retos 
 
+/*--guadar informacion del reto 
+function grabarInfoReto(fecha, hora, invitaciones, idreto) {
+    console.log("conectando a FireBase");
+    console.log("idusr: ", idusr);
+    console.log("contexto: ", contexto);
+    console.log("contextoValor: ", contextoValor);
+    console.log("idreto: ", idreto);
+    console.log('defaultApp.name: ' + defaultApp.name); // "[DEFAULT]"
+    // arbol datos registro
+    try {
+        var db = firebase.database();
+        var ref = db.ref(REF_RETO)
+        var newRefReto = ref.child(idreto);
+        var newRefUsr = newRefReto.child(idusr);
+        newRefUsr.child("fb_id").set(idusr).then(function(data) {
+            console.log('Firebase data: ', data);
+        })
+        newRefUsr.child(contexto).set(contextoValor).then(function(data) {
+            console.log('Firebase data: ', data);
+        })
+        return null;
+    } catch (err) {
+        console.log('err ', err);
+        return null;
+    }
+}
+//----- fin guardar infoReto*/
 class FacebookBot {
     constructor() {
         this.apiAiService = apiai(APIAI_ACCESS_TOKEN, { language: APIAI_LANG, requestSource: "fb" });
@@ -412,6 +439,11 @@ class FacebookBot {
                 }
                 console.log('event.message.text.indexOf(Lanzar-)', event.message.text.indexOf('Lanzar-'));
                 if (event.message.text.indexOf('Lanzar-') === 0) {
+                    //fecha y hora 
+                    var t = new Date(event.timestamp);
+                    var formatted = t.format("dd.mm.yyyy hh:MM:ss");
+                    console.log('Fecha=', formatted);
+                    //---------
                     var arr1 = event.message.text.split("-", 2);
                     console.log('arr1: ', arr1);
                     console.log('llamando solicitudReto');
