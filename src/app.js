@@ -443,12 +443,9 @@ class FacebookBot {
                     try {
                         console.log('event.timestamp =', event.timestamp);
                         var t = new Date(event.timestamp);
-                        console.log('getDate =', t.getUTCDate());
-                        console.log('getMonth =', t.getUTCDay());
-                        console.log('getDay =', t.getUTCMonth());
-                        console.log('getFullYear =', t.getUTCFullYear());
-                        console.log('getTime =', t.getUTCMinutes());
-                        console.log('t.toJSON =', t.toJSON());
+                        var arrDate = t.toJSON.split("T");
+                        console.log('Date: ', arrDate[0]);
+                        console.log('Time: ', arrDate[1]);
                     } catch (err) {
                         console.log('err ', err);
                     }
