@@ -446,6 +446,10 @@ class FacebookBot {
                         var arrDate = t.toJSON().split("T");
                         console.log('Date: ', arrDate[0]);
                         console.log('Time: ', arrDate[1]);
+                        var arrTime = arrDate[1].split(":");
+                        console.log('Hora: ', arrTime[0]);
+                        console.log('Minutos: ', arrTime[1]);
+                        console.log('Segundos: ', arrTime[2]);
                     } catch (err) {
                         console.log('err ', err);
                     }
