@@ -217,7 +217,7 @@ function grabarInfoReto(fecha, hora, invitaciones, idreto) {
 function fechaMexico(fbTimeStamp) {
     try {
         var t = new Date(fbTimeStamp);
-        t.setHours(t.getHours - 6);
+        t.setHours(t.getHours() - 6);
         var arrDate = t.toJSON().split("T");
         var hora = arrDate[1].split(".")
         console.log('Fecha: ', arrDate[0]);
