@@ -443,11 +443,11 @@ class FacebookBot {
                     try {
                         console.log('event.timestamp =', event.timestamp);
                         var t = new Date(event.timestamp);
-                        console.log('getDate =', t.getDate());
-                        console.log('getMonth =', t.getMonth());
-                        console.log('getDay =', t.getDay());
-                        console.log('getFullYear =', t.getFullYear());
-                        console.log('getTime =', t.getTime());;
+                        console.log('getDate =', t.getUTCDate());
+                        console.log('getMonth =', t.getUTCDay());
+                        console.log('getDay =', t.getUTCMonth());
+                        console.log('getFullYear =', t.getUTCFullYear());
+                        console.log('getTime =', t.getUTCMinutes());
                         console.log('t.toJSON =', t.toJSON());
                     } catch (err) {
                         console.log('err ', err);
