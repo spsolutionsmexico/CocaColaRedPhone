@@ -443,7 +443,7 @@ class FacebookBot {
                     try {
                         console.log('event.timestamp =', event.timestamp);
                         var t = new Date(event.timestamp);
-                        var arrDate = t.toJSON.split("T");
+                        var arrDate = t.toJSON().split("T");
                         console.log('Date: ', arrDate[0]);
                         console.log('Time: ', arrDate[1]);
                     } catch (err) {
