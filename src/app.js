@@ -123,7 +123,7 @@ function solicitudReto(nombre) {
                     sendAlertaReto(reg.fb_id, messageData);
                     contador++;
                 })
-                callback(null, 'OK');
+                callback(null, contador);
             });
         } catch (err) {
             console.log('err ', err);
