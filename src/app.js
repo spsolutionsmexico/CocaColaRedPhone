@@ -213,6 +213,18 @@ function grabarInfoReto(fecha, hora, invitaciones, idreto) {
     }
 }
 //----- fin guardar infoReto*/
+//funcion para convertir hora UTC a mexico
+function fechaMexico(fbTimeStamp) {
+    try {
+        var t = new Date(fbTimeStamp);
+        var arrDate = t.toJSON().split("T");
+        console.log('t.getHours(): ', t.getHours() - 6);
+        console.log('Date: ', arrDate[0]);
+        retur[arrDate[0], t.getHours() - 6 + ':' + t.getMinutes() + ':' + t.getSeconds()]
+    } catch (err) {
+        console.log('err ', err);
+    }
+}
 class FacebookBot {
     constructor() {
         this.apiAiService = apiai(APIAI_ACCESS_TOKEN, { language: APIAI_LANG, requestSource: "fb" });
@@ -439,21 +451,8 @@ class FacebookBot {
                 }
                 console.log('event.message.text.indexOf(Lanzar-)', event.message.text.indexOf('Lanzar-'));
                 if (event.message.text.indexOf('Lanzar-') === 0) {
-                    //fecha y hora 
-                    try {
-                        console.log('event.timestamp =', event.timestamp);
-                        var t = new Date(event.timestamp);
-                        var arrDate = t.toJSON().split("T");
-                        console.log('t.getHours(): ', t.getHours() - 6);
-                        console.log('Date: ', arrDate[0]);
-                        console.log('Time: ', arrDate[1]);
-                        var arrTime = arrDate[1].split(":");
-                        console.log('Hora: ', arrTime[0]);
-                        console.log('Minutos: ', arrTime[1]);
-                        console.log('Segundos: ', arrTime[2]);
-                    } catch (err) {
-                        console.log('err ', err);
-                    }
+                    var dateMX = fechaMexico(event.timestamp);
+                    console.log('dateMX=', dateMX);
                     //---------
                     var arr1 = event.message.text.split("-", 2);
                     console.log('arr1: ', arr1);
