@@ -114,18 +114,20 @@ function solicitudReto(nombre) {
 
     function asyncSqrt(ref, callback) {
         try {
+            var contador = 0;
             console.log('START execution');
             ref.on("value", function(snap) {
                 snap.forEach(function(childSnap) {
                     var reg = childSnap.val();
                     console.log('registro= ', reg.fb_id);
                     sendAlertaReto(reg.fb_id, messageData);
+                    contador++;
                 })
                 callback(null, 'OK');
             });
         } catch (err) {
             console.log('err ', err);
-            return null;
+            return contador;
         }
     }
 
@@ -154,7 +156,7 @@ function solicitudReto(nombre) {
         });
     }
     asyncSqrt(ref, function(ref, result) {
-        console.log('END asyncSqrt and result =', result);
+        console.log('Enviado a =', result + ' Usuarios registrados');
     });
 }
 //-----------------------------------------------
@@ -186,7 +188,7 @@ function grabardatosContexto(idusr, contexto, contextoValor, idreto) {
 }
 //----- fin guardar datos retos 
 
-/*--guadar informacion del reto 
+//--guadar informacion del reto 
 function grabarInfoReto(fecha, hora, invitaciones, idreto) {
     console.log("conectando a FireBase");
     console.log("idusr: ", idusr);
@@ -212,7 +214,7 @@ function grabarInfoReto(fecha, hora, invitaciones, idreto) {
         return null;
     }
 }
-//----- fin guardar infoReto*/
+//----- fin guardar infoReto
 //funcion para convertir hora UTC a mexico
 function fechaMexico(fbTimeStamp) {
     try {
