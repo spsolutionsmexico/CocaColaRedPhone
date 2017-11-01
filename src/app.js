@@ -583,9 +583,6 @@ class FacebookBot {
                         if (arr1[0] === 'alta') {
                             grabardatosAlta(sender, arr1[1], response.result.parameters.valor);
                         }
-                        if (arr1[1] === 'fin') {
-                            grabarRetoFin(sender, arr1[0]);
-                        }
                         //es un reto 
                         else {
                             console.log('invocar guadar datos contexto');
@@ -595,6 +592,10 @@ class FacebookBot {
                     }
                     if (value.name === 'alta-fin') {
                         guardarAlta(sender);
+                    }
+                    if (value.name.indexOf('-fin') === 0 && value.name != 'alta-fin') {
+                        var arr2 = value.name.split("-", 2);
+                        grabarRetoFin(sender, arr2[0]);
                     }
                 });
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
