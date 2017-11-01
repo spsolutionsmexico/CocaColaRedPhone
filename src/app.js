@@ -229,6 +229,16 @@ function grabarRetoFin(sender, idreto) {
     console.log('grabar fin reto ');
     console.log('idusr: ', sender);
     console.log('idReto: ', idreto);
+    var db = firebase.database();
+    var ref = db.ref(REF_RETO)
+    var newRefReto = ref.child(idreto);
+    var RefDatos = newRefReto.child("concluidas");
+    RefDatos.child("idReto").set(idreto).then(function(data) {
+        console.log('Firebase data: ', data);
+    })
+    RefDatos.child("fb_id").set(idreto).then(function(data) {
+        console.log('Firebase data: ', data);
+    })
 }
 //funcion para convertir hora UTC a mexico
 function fechaMexico(fbTimeStamp) {
