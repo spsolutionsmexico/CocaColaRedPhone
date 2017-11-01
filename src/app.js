@@ -241,8 +241,9 @@ function grabarRetoFin(sender, idreto) {
     var ref2 = db.ref("produccion/usuarios/datos/" + sender + "/");
     ref2.on("value", function(snap) {
         snap.forEach(function(childSnap) {
-            //var regVal = childSnap.val();
-            console.log('childSnap= ', childSnap);
+            console.log('childSnap.val= ', childSnap.val());
+            console.log('childSnap.key= ', childSnap.key);
+            console.log('childSnap.toJSON= ', childSnap.toJSON());
         })
     });
 
