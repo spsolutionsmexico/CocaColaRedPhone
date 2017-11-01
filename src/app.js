@@ -593,7 +593,8 @@ class FacebookBot {
                     if (value.name === 'alta-fin') {
                         guardarAlta(sender);
                     }
-                    if (value.name.indexOf('-fin') === 0 && value.name != 'alta-fin') {
+                    console.log('value.name.indexOf -fin:', value.name.indexOf('-fin'));
+                    if (value.name.indexOf('-fin') === 0) {
                         var arr2 = value.name.split("-", 2);
                         grabarRetoFin(sender, arr2[0]);
                     }
