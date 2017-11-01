@@ -232,13 +232,21 @@ function grabarRetoFin(sender, idreto) {
     var db = firebase.database();
     var ref = db.ref(REF_RETO)
     var newRefReto = ref.child(idreto);
-    var RefDatos = newRefReto.child("concluidas");
-    RefDatos.child("idReto").set(idreto).then(function(data) {
-        console.log('Firebase data: ', data);
-    })
-    RefDatos.child("fb_id").set(idreto).then(function(data) {
-        console.log('Firebase data: ', data);
-    })
+    var RefCon = newRefReto.child("concluidas");
+    var RefDetalle = RefCon.child(sender);
+    RefDetalle.child("fb_id").set(sender).then(function(data) {
+            console.log('Firebase data: ', data);
+        })
+        //conultar alrbol /usuarios/datos
+    var ref2 = db.ref("produccion/usuarios/datos/" + sender + "/");
+    ref2.on("value", function(snap) {
+        snap.forEach(function(childSnap) {
+            var reg = childSnap.val();
+            console.log('registro= ', reg);
+        })
+        callback(null, contador);
+    });
+
 }
 //funcion para convertir hora UTC a mexico
 function fechaMexico(fbTimeStamp) {
