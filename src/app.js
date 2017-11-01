@@ -93,7 +93,7 @@ function grabardatosAlta(idusr, contexto, contextoValor) {
 //----- fin guardar datos alta fire base 
 
 //funcion que envia a usuarios registrados mensaje para iniciar un reto------------------------ 
-function solicitudReto(nombre) {
+function solicitudReto(nombre, fecha, hora) {
     console.log('Inicia Solicitud Reto');
     var ref = db.ref("produccion/usuarios/facebook/");
     var count = 0;
@@ -157,6 +157,7 @@ function solicitudReto(nombre) {
     }
     asyncSqrt(ref, function(ref, result) {
         console.log('Enviado a =', result + ' Usuarios registrados');
+        grabarInfoReto(fecha, hora, result, nombre);
     });
 }
 //-----------------------------------------------
@@ -191,9 +192,9 @@ function grabardatosContexto(idusr, contexto, contextoValor, idreto) {
 //--guadar informacion del reto 
 function grabarInfoReto(fecha, hora, invitaciones, idreto) {
     console.log("conectando a FireBase");
-    console.log("idusr: ", idusr);
-    console.log("contexto: ", contexto);
-    console.log("contextoValor: ", contextoValor);
+    console.log("fecha: ", fecha);
+    console.log("hora: ", hora);
+    console.log("invitaciones: ", invitaciones);
     console.log("idreto: ", idreto);
     console.log('defaultApp.name: ' + defaultApp.name); // "[DEFAULT]"
     // arbol datos registro
@@ -201,11 +202,16 @@ function grabarInfoReto(fecha, hora, invitaciones, idreto) {
         var db = firebase.database();
         var ref = db.ref(REF_RETO)
         var newRefReto = ref.child(idreto);
-        var newRefUsr = newRefReto.child(idusr);
-        newRefUsr.child("fb_id").set(idusr).then(function(data) {
+        newRefReto.child("idReto").set(idreto).then(function(data) {
             console.log('Firebase data: ', data);
         })
-        newRefUsr.child(contexto).set(contextoValor).then(function(data) {
+        newRefReto.child("fechaEnvio").set(fecha).then(function(data) {
+            console.log('Firebase data: ', data);
+        })
+        newRefReto.child("horaEnvio").set(hora).then(function(data) {
+            console.log('Firebase data: ', data);
+        })
+        newRefReto.child("cantidadInvitados").set(invitaciones).then(function(data) {
             console.log('Firebase data: ', data);
         })
         return null;
@@ -463,7 +469,7 @@ class FacebookBot {
                     var arr1 = event.message.text.split("-", 2);
                     console.log('arr1: ', arr1);
                     console.log('llamando solicitudReto');
-                    solicitudReto(arr1[1]);
+                    solicitudReto(arr1[1], dateMX[0], dateMX[1]);
                     return null;
                 }
                 return event.message.text;
