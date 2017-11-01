@@ -243,7 +243,7 @@ function grabarRetoFin(sender, idreto) {
         snap.forEach(function(childSnap) {
             console.log('childSnap.val= ', childSnap.val());
             console.log('childSnap.key= ', childSnap.key);
-            console.log('childSnap.toJSON= ', childSnap.toJSON());
+            RefDetalle.child(childSnap.key).set(childSnap.val())
         })
     });
 
