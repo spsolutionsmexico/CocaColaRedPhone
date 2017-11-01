@@ -195,7 +195,7 @@ function grabarInfoReto(fecha, hora, invitaciones, idreto) {
     console.log("fecha: ", fecha);
     console.log("hora: ", hora);
     console.log("invitaciones: ", invitaciones);
-    console.log("idreto: ", idreto);
+    console.log("idreto: ", idreto.toLowerCase());
     console.log('defaultApp.name: ' + defaultApp.name); // "[DEFAULT]"
     // arbol datos registro
     try {
