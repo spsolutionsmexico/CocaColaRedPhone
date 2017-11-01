@@ -244,7 +244,6 @@ function grabarRetoFin(sender, idreto) {
             var reg = childSnap.val();
             console.log('registro= ', reg);
         })
-        callback(null, contador);
     });
 
 }
