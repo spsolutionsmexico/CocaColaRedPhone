@@ -174,7 +174,8 @@ function grabardatosContexto(idusr, contexto, contextoValor, idreto) {
         var db = firebase.database();
         var ref = db.ref(REF_RETO)
         var newRefReto = ref.child(idreto);
-        var newRefUsr = newRefReto.child(idusr);
+        var RefRespuestas = newRefReto.child("respuestas");
+        var newRefUsr = RefRespuestas.child(idusr);
         newRefUsr.child("fb_id").set(idusr).then(function(data) {
             console.log('Firebase data: ', data);
         })
@@ -203,16 +204,17 @@ function grabarInfoReto(fecha, hora, invitaciones, idreto) {
         var db = firebase.database();
         var ref = db.ref(REF_RETO)
         var newRefReto = ref.child(idreto);
-        newRefReto.child("idReto").set(idreto).then(function(data) {
+        var RefDatos = newRefReto.child("datos");
+        RefDatos.child("idReto").set(idreto).then(function(data) {
             console.log('Firebase data: ', data);
         })
-        newRefReto.child("fechaEnvio").set(fecha).then(function(data) {
+        RefDatos.child("fechaEnvio").set(fecha).then(function(data) {
             console.log('Firebase data: ', data);
         })
-        newRefReto.child("horaEnvio").set(hora).then(function(data) {
+        RefDatos.child("horaEnvio").set(hora).then(function(data) {
             console.log('Firebase data: ', data);
         })
-        newRefReto.child("cantidadInvitados").set(invitaciones).then(function(data) {
+        RefDatos.child("cantidadInvitados").set(invitaciones).then(function(data) {
             console.log('Firebase data: ', data);
         })
         return null;
@@ -222,6 +224,12 @@ function grabarInfoReto(fecha, hora, invitaciones, idreto) {
     }
 }
 //----- fin guardar infoReto
+
+function grabarRetoFin(sender, idreto) {
+    console.log('grabar fin reto ');
+    console.log('idusr: ', sender);
+    console.log('idReto: ', idreto);
+}
 //funcion para convertir hora UTC a mexico
 function fechaMexico(fbTimeStamp) {
     try {
@@ -574,6 +582,9 @@ class FacebookBot {
                         var arr1 = value.name.split("-", 2);
                         if (arr1[0] === 'alta') {
                             grabardatosAlta(sender, arr1[1], response.result.parameters.valor);
+                        }
+                        if (arr1[1] === 'fin') {
+                            grabarRetoFin(sender, arr1[0]);
                         }
                         //es un reto 
                         else {
