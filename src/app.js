@@ -95,7 +95,7 @@ function grabardatosAlta(idusr, contexto, contextoValor) {
 //funcion que envia a usuarios registrados mensaje para iniciar un reto------------------------ 
 function solicitudReto(nombre, fecha, hora) {
     console.log('Inicia Solicitud Reto');
-    var ref = db.ref("produccion/usuarios/facebook/");
+    var ref = db.ref(REF_ALTA);
     var count = 0;
     let messageData = {
         "text": "Quieres participar en un reto ?",
@@ -238,7 +238,7 @@ function grabarRetoFin(sender, idreto) {
             console.log('Firebase data: ', data);
         })
         //conultar alrbol /usuarios/datos
-    var ref2 = db.ref("produccion/usuarios/datos/" + sender + "/");
+    var ref2 = db.ref(REF_ALTA_DATA + sender + "/");
     ref2.on("value", function(snap) {
         snap.forEach(function(childSnap) {
             console.log('childSnap.val= ', childSnap.val());
