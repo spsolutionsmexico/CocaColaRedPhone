@@ -603,8 +603,7 @@ class FacebookBot {
                         var arr1 = value.name.split("-", 2);
                         //grabar el fin del proceso de alta 
                         if (value.name === 'alta-fin') {
-                            var fechaAtaFin = response.timestamp.replace('T', ' ')
-                            fechaAtaFin = fechaAtaFin.substr(0, 18)
+                            var fechaAtaFin = response.timestamp.substr(0, 9);
                             guardarAlta(sender, fechaAtaFin);
                         }
                         //grabar datos alta
@@ -612,7 +611,7 @@ class FacebookBot {
                             grabardatosAlta(sender, arr1[1], response.result.parameters.valor);
                         }
                         //es un reto 
-                        if (arr1[1] != 'fin') {
+                        if (arr1 != 'alta' && arr1[1] != 'fin') {
                             console.log('invocar guadar datos contexto');
                             grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                         }
