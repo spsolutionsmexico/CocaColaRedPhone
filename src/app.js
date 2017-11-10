@@ -48,7 +48,7 @@ const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 
 //grabar usuario en arbol usuarios (registro completo)
-function guardarAlta(idusr, dateMX) {
+function guardarAlta(idusr, fechaAtaFin) {
     //arbol usurios
     console.log('guardar ALta ');
     try {
@@ -59,7 +59,7 @@ function guardarAlta(idusr, dateMX) {
         newRef.child("fb_id").set(idusr).then(function(data) {
             console.log('Firebase data: ', data);
         })
-        grabardatosAlta(idusr, 'fechaActualizacion', dateMX[0] + ' ' + dateMX[1]);
+        grabardatosAlta(idusr, 'fechaActualizacion', fechaAtaFin);
         return null;
     } catch (err) {
         console.log('err ', err);
@@ -603,8 +603,9 @@ class FacebookBot {
                         var arr1 = value.name.split("-", 2);
                         //grabar el fin del proceso de alta 
                         if (value.name === 'alta-fin') {
-                            var dateMX = fechaMexico(event.timestamp);
-                            guardarAlta(sender, dateMX);
+                            var fechaAtaFin = response.timestamp.replace('T', ' ')
+                            fechaAtaFin = fechaAtaFin.substr(0, 18)
+                            guardarAlta(sender, fechaAtaFin);
                         }
                         //grabar datos alta
                         if (arr1[0] === 'alta') {
