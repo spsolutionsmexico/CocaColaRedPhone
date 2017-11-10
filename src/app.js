@@ -48,7 +48,7 @@ const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 
 //grabar usuario en arbol usuarios (registro completo)
-function guardarAlta(idusr) {
+function guardarAlta(idusr, dateMX) {
     //arbol usurios
     console.log('guardar ALta ');
     try {
@@ -59,6 +59,7 @@ function guardarAlta(idusr) {
         newRef.child("fb_id").set(idusr).then(function(data) {
             console.log('Firebase data: ', data);
         })
+        grabardatosAlta(idusr, 'fechaActualizacion', dateMX[0] + ' ' + dateMX[1]);
         return null;
     } catch (err) {
         console.log('err ', err);
@@ -225,7 +226,7 @@ function grabarInfoReto(fecha, hora, invitaciones, idreto) {
 }
 //----- fin guardar infoReto
 
-function grabarRetoFin(sender, idreto) {
+function grabarRetoFin(sender, idreto, dateMX) {
     console.log('grabar fin reto ');
     console.log('idusr: ', sender);
     console.log('idReto: ', idreto);
@@ -246,7 +247,7 @@ function grabarRetoFin(sender, idreto) {
             RefDetalle.child(childSnap.key).set(childSnap.val())
         })
     });
-
+    RefDetalle.child(fechaTermino).set(dateMX[0 + ' ' + dateMX[1]]);
 }
 //funcion para convertir hora UTC a mexico
 function fechaMexico(fbTimeStamp) {
@@ -600,14 +601,15 @@ class FacebookBot {
                         var arr1 = value.name.split("-", 2);
                         //grabar el fin del proceso de alta 
                         if (value.name === 'alta-fin') {
-                            guardarAlta(sender);
+                            var dateMX = fechaMexico(event.timestamp);
+                            guardarAlta(sender, dateMX);
                         }
                         //grabar datos alta
                         if (arr1[0] === 'alta') {
                             grabardatosAlta(sender, arr1[1], response.result.parameters.valor);
                         }
                         //es un reto 
-                        else {
+                        if (arr1[1] != 'fin') {
                             console.log('invocar guadar datos contexto');
                             grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                         }
@@ -616,7 +618,8 @@ class FacebookBot {
                     console.log('value.name.indexOf -fin:', value.name.indexOf('-fin'));
                     if (value.name.indexOf('-fin') > 0 && value.name != 'alta-fin') {
                         var arr2 = value.name.split("-", 2);
-                        grabarRetoFin(sender, arr2[0]);
+                        var dateMX = fechaMexico(event.timestamp);
+                        grabarRetoFin(sender, arr2[0], dateMX);
                     }
                 });
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
