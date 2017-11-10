@@ -579,14 +579,16 @@ class FacebookBot {
     }
 
     doApiAiRequest(apiaiRequest, sender) {
+        console.log('apiaiRequest: ', apiaiRequest);
         apiaiRequest.on('response', (response) => {
             if (this.isDefined(response.result) && this.isDefined(response.result.fulfillment)) {
                 let responseText = response.result.fulfillment.speech;
                 let responseData = response.result.fulfillment.data;
                 let responseMessages = response.result.fulfillment.messages;
                 //recuperando datos del request de api ai 
-                console.log('doApiAiRequest response.result ', response.result);
-                console.log('response.result.fulfillment.messages: ', response.result.fulfillment.messages);
+                console.log('response: ', response);
+                //console.log('doApiAiRequest response.result ', response.result);
+                //console.log('response.result.fulfillment.messages: ', response.result.fulfillment.messages);
                 //console.log('doApiAiRequest sender: ', sender);
                 //console.log('response.result.metadata.intentName: ', response.result.metadata.intentName);
                 //console.log('response.result.parameters.valor: ', response.result.parameters.valor);
