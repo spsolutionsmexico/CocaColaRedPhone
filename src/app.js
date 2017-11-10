@@ -247,7 +247,6 @@ function grabarRetoFin(sender, idreto, dateMX) {
             RefDetalle.child(childSnap.key).set(childSnap.val())
         })
     });
-    RefDetalle.child(fechaTermino).set(dateMX[0 + ' ' + dateMX[1]]);
 }
 //funcion para convertir hora UTC a mexico
 function fechaMexico(fbTimeStamp) {
@@ -611,7 +610,7 @@ class FacebookBot {
                             grabardatosAlta(sender, arr1[1], response.result.parameters.valor);
                         }
                         //es un reto 
-                        if (arr1 != 'alta' && arr1[1] != 'fin') {
+                        if (arr1[0] != 'alta' && arr1[1] != 'fin') {
                             console.log('invocar guadar datos contexto');
                             grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                         }
