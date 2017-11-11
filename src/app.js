@@ -610,7 +610,7 @@ class FacebookBot {
                             grabardatosAlta(sender, arr1[1], response.result.parameters.valor);
                         }
                         //es un reto 
-                        if (arr1[0] != 'alta' && arr1[1] != 'fin') {
+                        if (value.name.indexOf('alta') > 0 && value.name.indexOf('fin') > 0) {
                             console.log('invocar guadar datos contexto');
                             grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                         }
