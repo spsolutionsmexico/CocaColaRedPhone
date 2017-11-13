@@ -226,7 +226,7 @@ function grabarInfoReto(fecha, hora, invitaciones, idreto) {
 }
 //----- fin guardar infoReto
 
-function grabarRetoFin(sender, idreto, dateMX) {
+function grabarRetoFin(sender, idreto, fechaFin) {
     console.log('grabar fin reto ');
     console.log('idusr: ', sender);
     console.log('idReto: ', idreto);
@@ -246,6 +246,7 @@ function grabarRetoFin(sender, idreto, dateMX) {
             console.log('childSnap.key= ', childSnap.key);
             RefDetalle.child(childSnap.key).set(childSnap.val())
         })
+        RefDetalle.child('fechaActualizacion').set(fechaFin)
     });
 }
 //funcion para convertir hora UTC a mexico
@@ -619,8 +620,8 @@ class FacebookBot {
                     console.log('value.name.indexOf -fin:', value.name.indexOf('-fin'));
                     if (value.name.indexOf('-fin') > 0 && value.name != 'alta-fin') {
                         var arr2 = value.name.split("-", 2);
-                        var dateMX = fechaMexico(event.timestamp);
-                        grabarRetoFin(sender, arr2[0], dateMX);
+                        var fechaFin = response.timestamp.substr(0, 10);
+                        grabarRetoFin(sender, arr2[0], fechaFin);
                     }
                 });
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
