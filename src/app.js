@@ -602,7 +602,7 @@ class FacebookBot {
                         var arr1 = value.name.split("-", 2);
                         //grabar el fin del proceso de alta 
                         if (value.name === 'alta-fin') {
-                            var fechaAtaFin = response.timestamp.substr(0, 9);
+                            var fechaAtaFin = response.timestamp.substr(0, 10);
                             guardarAlta(sender, fechaAtaFin);
                         }
                         //grabar datos alta
