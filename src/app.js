@@ -230,7 +230,7 @@ function grabarRetoFin(sender, idreto, fechaFin) {
     console.log('grabar fin reto ');
     console.log('idusr: ', sender);
     console.log('idReto: ', idreto);
-    console.log('fechaFin:', fechaFin);
+    console.log('fechaFin CDMX:', fechaFin);
     var db = firebase.database();
     var ref = db.ref(REF_RETO)
     var newRefReto = ref.child(idreto);
@@ -620,8 +620,9 @@ class FacebookBot {
 
                     console.log('value.name.indexOf -fin:', value.name.indexOf('-fin'));
                     if (value.name.indexOf('-fin') > 0 && value.name != 'alta-fin') {
+                        var arr2 = value.name.split("-", 2);
                         var fechaFin = response.timestamp.replace('T', ' ').substr(0, 18);
-                        console.log('fechaFin: ', fechaFin);
+                        console.log('fechaFin UTC: ', fechaFin);
                         var t = new Date(fechaFin);
                         t.setHours(t.getHours() - 6);
                         grabarRetoFin(sender, arr2[0], t);
