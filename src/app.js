@@ -623,7 +623,7 @@ class FacebookBot {
                         var arr2 = value.name.split("-", 2);
                         var timeUTC = new Date(response.timestamp);
                         timeUTC.setHours(timeUTC.getHours() - 6);
-                        console.log('fechaFin CDMX: ', );
+                        console.log('fechaFin CDMX: ', timeUTC);
                         grabarRetoFin(sender, arr2[0], timeUTC + ' ');
                     }
                 });
