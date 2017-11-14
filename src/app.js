@@ -619,9 +619,10 @@ class FacebookBot {
 
                     console.log('value.name.indexOf -fin:', value.name.indexOf('-fin'));
                     if (value.name.indexOf('-fin') > 0 && value.name != 'alta-fin') {
-                        var arr2 = value.name.split("-", 2);
-                        var fechaFin = response.timestamp.substr(0, 10);
-                        grabarRetoFin(sender, arr2[0], fechaFin);
+                        var fechaFin = response.timestamp.replace('T', ' ').substr(0, 18);
+                        var t = new Date(fechaFin);
+                        t.setHours(t.getHours() - 6);
+                        grabarRetoFin(sender, arr2[0], t);
                     }
                 });
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
