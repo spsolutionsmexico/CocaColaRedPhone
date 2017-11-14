@@ -622,7 +622,7 @@ class FacebookBot {
                         var arr2 = value.name.split("-", 2);
                         var t = new Date(response.timestamp);
                         t.setHours(t.getHours() - 6);
-                        var fechafin = t.toISOString().replace('T', ' ');
+                        var fechafin = t.toISOString().replace('T', ' ').substr(0, 18);
                         grabarRetoFin(sender, arr2[0], fechafin);
                     }
                 });
