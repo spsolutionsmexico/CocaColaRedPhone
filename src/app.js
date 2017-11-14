@@ -230,7 +230,6 @@ function grabarRetoFin(sender, idreto, fechaFin) {
     console.log('grabar fin reto ');
     console.log('idusr: ', sender);
     console.log('idReto: ', idreto);
-    console.log('fechaFin CDMX:', fechaFin);
     var db = firebase.database();
     var ref = db.ref(REF_RETO)
     var newRefReto = ref.child(idreto);
@@ -621,10 +620,10 @@ class FacebookBot {
                     console.log('value.name.indexOf -fin:', value.name.indexOf('-fin'));
                     if (value.name.indexOf('-fin') > 0 && value.name != 'alta-fin') {
                         var arr2 = value.name.split("-", 2);
-                        var timeUTC = new Date(response.timestamp);
-                        timeUTC.setHours(timeUTC.getHours() - 6);
-                        console.log('fechaFin CDMX: ', timeUTC);
-                        grabarRetoFin(sender, arr2[0], timeUTC + ' ');
+                        var fechaFin = response.timestamp.replace('T', ' ').substr(0, 18);
+                        var t = new Date(fechaFin);
+                        t.setHours(t.getHours() - 6);
+                        grabarRetoFin(sender, arr2[0], t + '');
                     }
                 });
                 if (this.isDefined(responseData) && this.isDefined(responseData.facebook)) {
