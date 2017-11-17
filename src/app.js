@@ -477,7 +477,7 @@ class FacebookBot {
     //which webhook event
     getEventText(event) {
         console.log('getEventText event: ', event);
-        console.log('event.attachments', JSON.stringify(event.attachments));
+        console.log('event.message.attachments: ', JSON.stringify(event.message.attachments));
         if (event.message) {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
                 return event.message.quick_reply.payload;
