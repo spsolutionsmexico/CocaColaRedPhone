@@ -483,6 +483,9 @@ class FacebookBot {
             if (event.message.quick_reply && event.message.quick_reply.payload) {
                 return event.message.quick_reply.payload;
             }
+            if (event.message.attachments) {
+                console.log('event.message.attachments', JSON.stringify(event.message.attachments));
+            }
             //iniciar proceso del alta del usuario
             if (event.message.text) {
                 if (event.message.text == "Alta") {
