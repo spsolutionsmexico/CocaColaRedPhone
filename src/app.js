@@ -421,11 +421,9 @@ class FacebookBot {
 
                     if (message.imageUrl) {
                         let facebookMessage = {};
-
                         // "imageUrl": "http://example.com/image.jpg"
                         facebookMessage.attachment = { type: "image" };
                         facebookMessage.attachment.payload = { url: message.imageUrl };
-
                         facebookMessages.push(facebookMessage);
                     }
 
@@ -555,6 +553,7 @@ class FacebookBot {
     }
 
     processMessageEvent(event) {
+        console.log('<----event :', event + '--->');
         const sender = event.sender.id.toString();
         const text = this.getEventText(event);
         if (text) {
