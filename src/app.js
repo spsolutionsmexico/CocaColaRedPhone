@@ -485,6 +485,7 @@ class FacebookBot {
             }
             if (event.message.attachments) {
                 console.log('event.message.attachments', JSON.stringify(event.message.attachments));
+                console.log('event.message.attachments[0].type: ', event.message.attachments[0].type);
             }
             //iniciar proceso del alta del usuario
             if (event.message.text) {
