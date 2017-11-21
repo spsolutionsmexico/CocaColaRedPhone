@@ -608,7 +608,6 @@ class FacebookBot {
                     var arr1 = value.name.split("-", 2);
                     if (value.lifespan == 1) {
                         console.log('doApiAiRequest sender: ', sender);
-                        console.log('response.result.parameters: ', response.result.parameters);
                         console.log('response.result.parameters.valor: ', response.result.parameters.valor);
                         console.log('contexto: ', value.name);
                         //grabar el fin del proceso de alta 
@@ -626,7 +625,10 @@ class FacebookBot {
                             grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                         }
                     }
-
+                    if (value.lifespan == 2) {
+                        console.log('LS=2 value.name: ', value.name);
+                        console.log('LS=2 response.result.parameters: ', response.result.parameters);
+                    }
                     console.log('value.name.indexOf -fin:', value.name.indexOf('-fin'));
                     if (value.name.indexOf('-fin') > 0 && value.name != 'alta-fin') {
                         var arr2 = value.name.split("-", 2);
