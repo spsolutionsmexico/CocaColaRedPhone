@@ -487,9 +487,7 @@ class FacebookBot {
             if (event.message.attachments) {
                 if (event.message.attachments[0].type) {
                     if (event.message.attachments[0].type === 'image') {
-                        let imageURL = url.parse(event.message.attachments[0].payload.url);
-                        console.log('imageURL', imageURL);
-                        return imageURL;
+                        return event.message.attachments[0].payload.url;
                     }
                 }
 
@@ -624,6 +622,9 @@ class FacebookBot {
                         //es un reto 
                         if (value.name.indexOf('alta') < 0 && value.name.indexOf('fin') < 0) {
                             console.log('invocar guadar datos contexto');
+                            if (arr1[1].indexOf('foto') > 0) {
+                                console.log('combertir url ->', response.result.parameters.valor);
+                            }
                             grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                         }
                     }
