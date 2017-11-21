@@ -622,7 +622,9 @@ class FacebookBot {
                         //es un reto 
                         if (value.name.indexOf('alta') < 0 && value.name.indexOf('fin') < 0) {
                             console.log('invocar guadar datos contexto');
-                            consoloe.log('response.result.parameters.valor.original: ', response.result.parameters.valor.original);
+                            if (response.result.parameters) {
+                                consoloe.log('response.result.parameters: ', response.result.parameters);
+                            }
                             grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                         }
                     }
