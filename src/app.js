@@ -600,7 +600,7 @@ class FacebookBot {
                 //console.log('response.result.fulfillment.messages: ', response.result.fulfillment.messages);
                 //console.log('doApiAiRequest sender: ', sender);
                 //console.log('response.result.metadata.intentName: ', response.result.metadata.intentName);
-                console.log('response.result.parameters ', response.result.parameters);
+                //console.log('response.result.parameters ', response.result.parameters);
                 //console.log('response.sessionId: ', response.sessionId);
                 //proceso alta 
                 response.result.contexts.forEach(function(value) {
@@ -622,6 +622,7 @@ class FacebookBot {
                         }
                         //es un reto 
                         if (value.name.indexOf('alta') < 0 && value.name.indexOf('fin') < 0) {
+                            console.log('response.result.resolvedQuery: ', response.result.resolvedQuery);
                             console.log('invocar guadar datos contexto');
                             grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                         }
