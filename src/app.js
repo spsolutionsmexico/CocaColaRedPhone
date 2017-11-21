@@ -625,8 +625,9 @@ class FacebookBot {
                             grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                         }
                     }
+                    console.log('arr1[1].indexOf foto: ', arr1[1].indexOf('foto'));
                     if (arr1[1].indexOf('foto') > 0) {
-                        console.log('URL foto valor.original: ', response.result.parameters.valor.original);
+                        console.log('URL foto valor.original: ', response.result.parameters);
                     }
                     console.log('value.name.indexOf -fin:', value.name.indexOf('-fin'));
                     if (value.name.indexOf('-fin') > 0 && value.name != 'alta-fin') {
