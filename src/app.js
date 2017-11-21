@@ -605,11 +605,11 @@ class FacebookBot {
                 //proceso alta 
                 response.result.contexts.forEach(function(value) {
                     console.log('value: ', value);
+                    var arr1 = value.name.split("-", 2);
                     if (value.lifespan == 1) {
                         console.log('doApiAiRequest sender: ', sender);
                         console.log('response.result.parameters.valor: ', response.result.parameters.valor);
                         console.log('contexto: ', value.name);
-                        var arr1 = value.name.split("-", 2);
                         //grabar el fin del proceso de alta 
                         if (value.name === 'alta-fin') {
                             var fechaAtaFin = response.timestamp.substr(0, 10);
@@ -622,13 +622,12 @@ class FacebookBot {
                         //es un reto 
                         if (value.name.indexOf('alta') < 0 && value.name.indexOf('fin') < 0) {
                             console.log('invocar guadar datos contexto');
-                            if (arr1[1].indexOf('foto') > 0) {
-                                console.log('combertir url ->', response.result.parameters.valor);
-                            }
                             grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                         }
                     }
-
+                    if (arr1[1].indexOf('foto') > 0) {
+                        console.log('URL foto valor.original: ', response.result.parameters.valor.original);
+                    }
                     console.log('value.name.indexOf -fin:', value.name.indexOf('-fin'));
                     if (value.name.indexOf('-fin') > 0 && value.name != 'alta-fin') {
                         var arr2 = value.name.split("-", 2);
