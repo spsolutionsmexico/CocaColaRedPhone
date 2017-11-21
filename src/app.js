@@ -7,6 +7,7 @@ const uuid = require('uuid');
 const request = require('request');
 const JSONbig = require('json-bigint');
 const async = require('async');
+const url = require('url');
 //firebase 
 var firebase = require('firebase');
 //cofiguracion conexion firebase
@@ -486,7 +487,9 @@ class FacebookBot {
             if (event.message.attachments) {
                 if (event.message.attachments[0].type) {
                     if (event.message.attachments[0].type === 'image') {
-                        return event.message.attachments[0].payload.url;
+                        let imageURL = url.parse(event.message.attachments[0].payload.url);
+                        console.log('imageURL', imageURL);
+                        return imageURL;
                     }
                 }
 
