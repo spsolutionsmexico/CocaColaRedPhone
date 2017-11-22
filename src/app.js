@@ -624,6 +624,7 @@ class FacebookBot {
                         if (value.name.indexOf('alta') < 0 && value.name.indexOf('fin') < 0) {
                             console.log('invocar guadar datos contexto ');
                             //guardar url de la foro en base al valor response.result.resolvedQuery
+                            console.log('arr1[1].indexOf foto: ', arr1[1].indexOf('foto'));
                             if (arr1[1].indexOf('foto') > 0) {
                                 grabardatosContexto(sender, arr1[1], response.result.resolvedQuery, arr1[0]);
                             }
