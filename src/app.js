@@ -628,8 +628,9 @@ class FacebookBot {
                             console.log('response.result.resolvedQuery: ', response.result.resolvedQuery);
                             if (arr1[1].indexOf('foto') >= 0) {
                                 grabardatosContexto(sender, arr1[1], response.result.resolvedQuery, arr1[0]);
+                            } else {
+                                grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                             }
-                            grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                         }
                     }
                     console.log('value.name.indexOf -fin:', value.name.indexOf('-fin'));
