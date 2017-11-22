@@ -626,7 +626,7 @@ class FacebookBot {
                             //guardar url de la foro en base al valor response.result.resolvedQuery
                             console.log('arr1[1].indexOf foto: ', arr1[1].indexOf('foto'));
                             console.log('response.result.resolvedQuery: ', response.result.resolvedQuery);
-                            if (arr1[1].indexOf('foto') > 0) {
+                            if (arr1[1].indexOf('foto') >= 0) {
                                 grabardatosContexto(sender, arr1[1], response.result.resolvedQuery, arr1[0]);
                             }
                             grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
