@@ -100,7 +100,10 @@ function solicitudReto(nombre, fecha, hora) {
     var ref = db.ref(REF_ALTA);
     var count = 0;
     let messageData = {
-        "text": "Quieres participar en un reto ?",
+        "text": "Quieres participar en un reto 1?",
+        "text": "Quieres participar en un reto 2?",
+        "text": "Quieres participar en un reto 3?",
+        "text": "Quieres participar en un reto 4?",
         "quick_replies": [{
                 "content_type": "text",
                 "title": "SI",
