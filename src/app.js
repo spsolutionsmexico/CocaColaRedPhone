@@ -637,11 +637,14 @@ class FacebookBot {
                             }
                         }
                         if (value.name.indexOf('99-reto-mensaje') === 0) {
+                            console.log('value.parameters: ', value.parameters);
+                            console.log('value.parameters.reto:', value.parameters.reto);
+                            console.log('value.parameters.mensaje: ', value.parameters.mensaje);
                             var t = new Date(response.timestamp);
                             t.setHours(t.getHours() - 6);
                             var fechareto = t.toISOString().replace('T', ' ').substr(0, 19);
                             var arrFecha = fechareto.split(' ', 2);
-                            solicitudReto(response.result.parameters.reto, response.result.parameters.mensaje, arrFecha[0], arrFecha[1]);
+                            solicitudReto(value.parameters.reto, value.parameters.mensaje, arrFecha[0], arrFecha[1]);
                         }
                     }
                     console.log('value.name.indexOf -fin:', value.name.indexOf('-fin'));
