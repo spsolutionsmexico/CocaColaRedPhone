@@ -97,6 +97,10 @@ function grabardatosAlta(idusr, contexto, contextoValor) {
 //funcion que envia a usuarios registrados mensaje para iniciar un reto------------------------ 
 function solicitudReto(nombre, texto, fecha, hora) {
     console.log('Inicia Solicitud Reto');
+    console.log('nombre reto: ', nombre);
+    console.log('texto: ', texto);
+    console.log('fecha Reto:', fecha);
+    console.log('Hora Reto:', hora);
     var ref = db.ref(REF_ALTA);
     var count = 0;
     let messageData = {
