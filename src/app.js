@@ -621,7 +621,7 @@ class FacebookBot {
                             grabardatosAlta(sender, arr1[1], response.result.parameters.valor);
                         }
                         //es un reto 
-                        if (value.name.indexOf('alta') < 0 && value.name.indexOf('fin') < 0) {
+                        if (value.name.indexOf('alta') < 0 && value.name.indexOf('fin') < 0 && value.name.indexOf('99-') < 0) {
                             console.log('invocar guadar datos contexto ');
                             //guardar url de la foro en base al valor response.result.resolvedQuery
                             console.log('arr1[1].indexOf foto: ', arr1[1].indexOf('foto'));
@@ -632,7 +632,7 @@ class FacebookBot {
                                 grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                             }
                         }
-                        if (value.name.indexOf('99-')) {
+                        if (value.name.indexOf('99-') === 0) {
                             var t = new Date(response.timestamp);
                             t.setHours(t.getHours() - 6);
                             var fechareto = t.toISOString().replace('T', ' ').substr(0, 19);
