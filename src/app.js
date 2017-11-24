@@ -95,15 +95,12 @@ function grabardatosAlta(idusr, contexto, contextoValor) {
 //----- fin guardar datos alta fire base 
 
 //funcion que envia a usuarios registrados mensaje para iniciar un reto------------------------ 
-function solicitudReto(nombre, fecha, hora) {
+function solicitudReto(nombre, texto, fecha, hora) {
     console.log('Inicia Solicitud Reto');
     var ref = db.ref(REF_ALTA);
     var count = 0;
     let messageData = {
-        "text": "Quieres participar en un reto 1?",
-        "text": "Quieres participar en un reto 2?",
-        "text": "Quieres participar en un reto 3?",
-        "text": "Quieres participar en un reto 4?",
+        "text": texto,
         "quick_replies": [{
                 "content_type": "text",
                 "title": "SI",
@@ -501,7 +498,7 @@ class FacebookBot {
                     console.log('return cod-alta');
                     return 'cod-alta';
                 }
-                console.log('event.message.text.indexOf(Lanzar-)', event.message.text.indexOf('Lanzar-'));
+                /*console.log('event.message.text.indexOf(Lanzar-)', event.message.text.indexOf('Lanzar-'));
                 if (event.message.text.indexOf('Lanzar-') === 0) {
                     var dateMX = fechaMexico(event.timestamp);
                     console.log('dateMX=', dateMX);
@@ -511,7 +508,7 @@ class FacebookBot {
                     console.log('llamando solicitudReto');
                     solicitudReto(arr1[1], dateMX[0], dateMX[1]);
                     return null;
-                }
+                }*/
                 return event.message.text;
             }
         }
@@ -634,6 +631,13 @@ class FacebookBot {
                             } else {
                                 grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                             }
+                        }
+                        if (value.name.indexOf('99-')) {
+                            var t = new Date(response.timestamp);
+                            t.setHours(t.getHours() - 6);
+                            var fechareto = t.toISOString().replace('T', ' ').substr(0, 19);
+                            var arrFecha = fechareto.split(' ', 2);
+                            solicitudReto(response.result.parameters.reto, response.result.parameters.mensaje, arrFecha[0], arrFecha[1]);
                         }
                     }
                     console.log('value.name.indexOf -fin:', value.name.indexOf('-fin'));
