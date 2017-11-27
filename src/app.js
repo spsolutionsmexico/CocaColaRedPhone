@@ -625,7 +625,7 @@ class FacebookBot {
                             grabardatosAlta(sender, arr1[1], response.result.parameters.valor);
                         }
                         //es un reto 
-                        if (value.name.indexOf('alta') < 0 && value.name.indexOf('fin') < 0 && value.name.indexOf('99-reto-mensaje') < 0) {
+                        if (value.name.indexOf('alta') < 0 && value.name.indexOf('fin') < 0 && value.name.indexOf('99-') < 0) {
                             console.log('invocar guadar datos contexto ');
                             //guardar url de la foro en base al valor response.result.resolvedQuery
                             console.log('arr1[1].indexOf foto: ', arr1[1].indexOf('foto'));
