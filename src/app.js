@@ -253,7 +253,33 @@ function grabarRetoFin(sender, idreto, fechaFin) {
         })
         RefDetalle.child('fechaActualizacion').set(fechaFin)
     });
+    incrementarReto(idreto);
 }
+//funcion que actualiza la cantidad de retos contestados en base al reto 
+function incrementarReto(idreto) {
+    try {
+        //consultar
+        var db = firebase.database();
+        var ref = db.ref(REF_RETO + idreto + '/datos/cantidadrespuestas')
+        var refSUMA = db.ref(REF_RETO + idreto + '/datos/')
+        ref.once("value", function(snapshot) {
+            let cRespuestas = snapshot.val();
+            console.log('Cantidad Respuestas', snapshot.val());
+            if (cRespuestas = !null) {
+                //sumar
+                cRespuestas = cRespuestas + 1;
+                refSUMA.child('cantidadrespuestas').set(cRespuestas);
+            } else {
+                var refSUMA = db.ref(REF_RETO + idreto + '/datos/');
+                refSUMA.child('cantidadrespuestas').set(1)
+            }
+        });
+
+    } catch (err) {
+        console.log('err ', err);
+    }
+}
+
 //funcion para convertir hora UTC a mexico
 function fechaMexico(fbTimeStamp) {
     try {
