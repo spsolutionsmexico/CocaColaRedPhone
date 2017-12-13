@@ -267,11 +267,13 @@ function incrementarReto(idreto) {
         ref.once("value", function(snapshot) {
             let cRespuestas = snapshot.val();
             console.log('Cantidad Respuestas', snapshot.val());
-            if (cRespuestas = !null) {
+            if (snapshot.val()) {
                 //sumar
+                console.log('Sumar');
                 cRespuestas = cRespuestas + 1;
                 refSUMA.child('cantidadrespuestas').set(cRespuestas);
             } else {
+                console.log('agregar cantidadrespuestas');
                 var refSUMA = db.ref(REF_RETO + idreto + '/datos/');
                 refSUMA.child('cantidadrespuestas').set(1)
             }
