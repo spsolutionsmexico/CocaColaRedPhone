@@ -693,7 +693,7 @@ class FacebookBot {
                                 }
                             }
                         }
-                        if (value.name.indexOf('99-reto-mensaje') === 0) {
+                        if (value.name.indexOf('99-reto-mensaje') === 0 && sender == '1472770199476303') {
                             console.log('value.parameters: ', value.parameters);
                             console.log('value.parameters.reto:', value.parameters.reto);
                             console.log('value.parameters.mensaje: ', value.parameters.mensaje);
