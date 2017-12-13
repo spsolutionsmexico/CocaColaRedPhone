@@ -263,7 +263,6 @@ function incrementarReto(idreto) {
         //consultar
         var db = firebase.database();
         var ref = db.ref(REF_RETO + idreto + '/datos/cantidadrespuestas/')
-        var refSUMA = db.ref(REF_RETO + idreto + '/datos/')
         ref.once("value", function(snapshot) {
             let cRespuestas = snapshot.val();
             console.log('Cantidad Respuestas', snapshot.val());
@@ -271,10 +270,12 @@ function incrementarReto(idreto) {
                 //sumar
                 console.log('Sumar');
                 cRespuestas = cRespuestas + 1;
-                refSUMA.child('cantidadrespuestas').set(cRespuestas);
+                console.log('cRespuestas:', cRespuestas);
+                var refSUMA = db.ref(REF_RETO + idreto + '/datos/')
+                refSUMA.child('cantidadrespuestas').set(cRespuestas)
             } else {
                 console.log('agregar cantidadrespuestas');
-                var refSUMA = db.ref(REF_RETO + idreto + '/datos/');
+                var refSUMA = db.ref(REF_RETO + idreto + '/datos/')
                 refSUMA.child('cantidadrespuestas').set(1)
             }
         });
