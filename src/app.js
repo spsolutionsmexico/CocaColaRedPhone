@@ -179,9 +179,11 @@ function grabardatosContexto(idusr, contexto, contextoValor, idreto, flagconcat)
     try {
         var db = firebase.database();
         //concat contexto valor
+        console.log('flagconcat: ', flagconcat);
         if (flagconcat == true) {
-            var refConcat = db.ref(REF_RETO + idreto + '/' + idusr + '/' + contexto + '/')
+            var refConcat = db.ref(REF_RETO + idreto + '/respuestas/' + idusr + '/' + contexto + '/')
             refConcat.once("value", function(snapshot) {
+                console.log(snapshot.val());
                 if (snapshot.val()) {
                     contextoValor = snapshot.val() + ',' + contextoValor;
                     console.log('contextoValor cocat: ', contextoValor);
