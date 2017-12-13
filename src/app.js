@@ -640,7 +640,7 @@ class FacebookBot {
                 //proceso alta 
                 response.result.contexts.forEach(function(value) {
                     console.log('value: ', value);
-                    var arr1 = value.name.split("-", 2);
+                    var arr1 = value.name.split("-", 3);
                     if (value.lifespan == 1) {
                         console.log('doApiAiRequest sender: ', sender);
                         console.log('response.result.parameters: ', response.result.parameters);
@@ -664,6 +664,9 @@ class FacebookBot {
                             if (arr1[1].indexOf('foto') >= 0) {
                                 grabardatosContexto(sender, arr1[1], response.result.resolvedQuery, arr1[0]);
                             } else {
+                                if (arr1[2] && arr1[2] == 'acumula') {
+                                    console.log('-------------acumular contexto----------------');
+                                }
                                 grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
                             }
                         }
