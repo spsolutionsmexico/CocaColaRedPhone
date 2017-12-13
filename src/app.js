@@ -178,29 +178,33 @@ function grabardatosContexto(idusr, contexto, contextoValor, idreto, flagconcat)
     // arbol retos respuestas
     try {
         var db = firebase.database();
-        //concat contexto valor
-        console.log('flagconcat: ', flagconcat);
-        if (flagconcat == true) {
-            var refConcat = db.ref(REF_RETO + idreto + '/respuestas/' + idusr + '/' + contexto + '/')
-            refConcat.once("value", function(snapshot) {
-                console.log(snapshot.val());
-                if (snapshot.val()) {
-                    contextoValor = snapshot.val() + ',' + contextoValor;
-                    console.log('contextoValor cocat: ', contextoValor);
-                }
-            });
-        }
         //--------------------
         var ref = db.ref(REF_RETO)
         var newRefReto = ref.child(idreto);
         var RefRespuestas = newRefReto.child("respuestas");
         var newRefUsr = RefRespuestas.child(idusr);
         newRefUsr.child("fb_id").set(idusr).then(function(data) {
-            console.log('Firebase data: ', data);
-        })
-        newRefUsr.child(contexto).set(contextoValor).then(function(data) {
-            console.log('Firebase data: ', data);
-        })
+                console.log('Firebase data: ', data);
+            })
+            //concat contexto valor
+        console.log('flagconcat: ', flagconcat);
+        if (flagconcat == true) {
+            var refConcat = db.ref(REF_RETO + idreto + '/respuestas/' + idusr + '/' + contexto + '/')
+            refConcat.once("value", function(snapshot) {
+                console.log('contexto anterior: ', snapshot.val());
+                if (snapshot.val()) {
+                    contextoValor2 = snapshot.val() + ',' + contextoValor;
+                    console.log('contextoValor concat: ', contextoValor2);
+                    newRefUsr.child(contexto).set(contextoValor2).then(function(data) {
+                        console.log('Firebase data: ', data);
+                    })
+                }
+            });
+        } else {
+            newRefUsr.child(contexto).set(contextoValor).then(function(data) {
+                console.log('Firebase data: ', data);
+            })
+        }
         return null;
     } catch (err) {
         console.log('err ', err);
