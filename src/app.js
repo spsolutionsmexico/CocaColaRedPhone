@@ -168,16 +168,27 @@ function solicitudReto(nombre, texto, fecha, hora) {
 }
 //-----------------------------------------------
 //--guadar datos de los retos en firebase 
-function grabardatosContexto(idusr, contexto, contextoValor, idreto) {
+function grabardatosContexto(idusr, contexto, contextoValor, idreto, flagconcat) {
     console.log("conectando a FireBase");
     console.log("idusr: ", idusr);
     console.log("contexto: ", contexto);
     console.log("contextoValor: ", contextoValor);
     console.log("idreto: ", idreto);
     console.log('defaultApp.name: ' + defaultApp.name); // "[DEFAULT]"
-    // arbol datos registro
+    // arbol retos respuestas
     try {
         var db = firebase.database();
+        //concat contexto valor
+        if (flagconcat == true) {
+            var refConcat = db.ref(REF_RETO + idreto + '/' + idusr + '/' + contexto + '/')
+            refConcat.once("value", function(snapshot) {
+                if (snapshot.val()) {
+                    contextoValor = snapshot.val() + ',' + contextoValor;
+                    console.log('contextoValor cocat: ', contextoValor);
+                }
+            });
+        }
+        //--------------------
         var ref = db.ref(REF_RETO)
         var newRefReto = ref.child(idreto);
         var RefRespuestas = newRefReto.child("respuestas");
@@ -662,12 +673,13 @@ class FacebookBot {
                             console.log('arr1[1].indexOf foto: ', arr1[1].indexOf('foto'));
                             console.log('response.result.resolvedQuery: ', response.result.resolvedQuery);
                             if (arr1[1].indexOf('foto') >= 0) {
-                                grabardatosContexto(sender, arr1[1], response.result.resolvedQuery, arr1[0]);
+                                grabardatosContexto(sender, arr1[1], response.result.resolvedQuery, arr1[0], false);
                             } else {
                                 if (arr1[2] && arr1[2] == 'acumula') {
                                     console.log('-------------acumular contexto----------------');
+                                    grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0], true);
                                 }
-                                grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0]);
+                                grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0], false);
                             }
                         }
                         if (value.name.indexOf('99-reto-mensaje') === 0) {
