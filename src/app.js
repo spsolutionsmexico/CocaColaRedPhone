@@ -258,10 +258,11 @@ function grabarRetoFin(sender, idreto, fechaFin) {
 //funcion que actualiza la cantidad de retos contestados en base al reto 
 function incrementarReto(idreto) {
     console.log('llamada  inclemetar reto ');
+    console.log('idreto: ', idreto);
     try {
         //consultar
         var db = firebase.database();
-        var ref = db.ref(REF_RETO + idreto + '/datos/cantidadrespuestas')
+        var ref = db.ref(REF_RETO + idreto + '/datos/cantidadrespuestas/')
         var refSUMA = db.ref(REF_RETO + idreto + '/datos/')
         ref.once("value", function(snapshot) {
             let cRespuestas = snapshot.val();
