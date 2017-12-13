@@ -193,9 +193,13 @@ function grabardatosContexto(idusr, contexto, contextoValor, idreto, flagconcat)
             refConcat.once("value", function(snapshot) {
                 console.log('contexto anterior: ', snapshot.val());
                 if (snapshot.val()) {
-                    contextoValor2 = snapshot.val() + ',' + contextoValor;
+                    var contextoValor2 = snapshot.val() + ',' + contextoValor;
                     console.log('contextoValor concat: ', contextoValor2);
                     newRefUsr.child(contexto).set(contextoValor2).then(function(data) {
+                        console.log('Firebase data: ', data);
+                    })
+                } else {
+                    newRefUsr.child(contexto).set(contextoValor).then(function(data) {
                         console.log('Firebase data: ', data);
                     })
                 }
