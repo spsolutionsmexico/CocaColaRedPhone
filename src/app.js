@@ -678,8 +678,9 @@ class FacebookBot {
                                 if (arr1[2] && arr1[2] == 'acumula') {
                                     console.log('-------------acumular contexto----------------');
                                     grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0], true);
+                                } else {
+                                    grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0], false);
                                 }
-                                grabardatosContexto(sender, arr1[1], response.result.parameters.valor, arr1[0], false);
                             }
                         }
                         if (value.name.indexOf('99-reto-mensaje') === 0) {
