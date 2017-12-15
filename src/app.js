@@ -176,6 +176,10 @@ function grabardatosContexto(idusr, contexto, contextoValor, idreto, flagconcat)
     console.log("idreto: ", idreto);
     console.log('defaultApp.name: ' + defaultApp.name); // "[DEFAULT]"
     // arbol retos respuestas
+    if (contextoValor == 'undefined' || contextoValor == null) {
+        console.log('-sin contexto-');
+        return null;
+    }
     try {
         var db = firebase.database();
         //--------------------
