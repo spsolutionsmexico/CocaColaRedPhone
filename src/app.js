@@ -673,7 +673,7 @@ class FacebookBot {
                             guardarAlta(sender, fechaAtaFin);
                         }
                         //grabar datos alta
-                        if (arr1[0] === 'alta' && arr1[1] != 'fin') {
+                        if (response.result.parameters.valor != 'undefined' && response.result.parameters.valor != null && arr1[0] === 'alta' && arr1[1] != 'fin') {
                             grabardatosAlta(sender, arr1[1], response.result.parameters.valor);
                         }
                         //es un reto 
