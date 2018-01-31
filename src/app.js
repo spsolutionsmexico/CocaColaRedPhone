@@ -86,8 +86,10 @@ function consultaClienteWS(idcontrato) {
             var newstr = resSting.substring(resSting.indexOf("</Saldo_Fecha>"));
             var ini = newstr.indexOf("<Saldo_Fecha>") + 13;
             var fin = newstr.indexOf("</Saldo_Fecha") + 21;
+            console.log('ini: ', ini);
+            console.log('fin: ', fin);
             var s = newstr.substring(ini);
-            console.log('Saldo_Fecha= ', s.substring(8));
+            console.log('Saldo_Fecha= ', s);
             resolve();
         });
     });
