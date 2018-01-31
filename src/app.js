@@ -51,21 +51,23 @@ const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 //----funcion demo monte ws-----------
 function consultaClienteWS(idcontrato) {
     console.log('InvocarWS Monte');
+    console.log('idcontrato: ', idcontrato);
     return new Promise((resolve, reject) => {
         request({
             url: 'http://189.254.131.9:8080/NMP/GestionMovilRS/FlexibleUpdateWorkOrder',
             method: 'POST',
             json: {
-                "IdWorkOrderFormType": "2cca8a7c-32a5-431f-8410-b361e84c741b",
-                "IdWorkOrder": "4e9f5c90-85dd-4a96-b095-f387074d6c46",
-                "ExternalId": "gmoralesb_20160301_150834",
-                "Action": "Cobranza_Cliente",
-                "InputFields": {
-                    "Num_Contrato": idcontrato,
-                    "ExternalType": "Cobranza_Cliente"
-                },
+                "Action": "Estatus_Solicitudes",
+                "IdWorkOrder": "eb6e14bb-936b-4480-b3f1-ba6f2cb23cca",
+                "WorkOrderType": "Consulta_Solicitudes",
                 "Username": "ICMUNOZ",
-                "WorkOrderType": "Cobranza_Cliente"
+                "ExternalId": "gmoralesb_20160226_134446",
+                "IdWorkOrderFormType": "0d7032d7-2477-44a1-a14c-20ec2c704283",
+                "InputFields": {
+                    "tipo_busqueda": "Por_Cliente",
+                    "Num_Cliente": "3897896",
+                    "ExternalType": "Consulta_Solicitudes"
+                }
             }
         }, (error, response) => {
             if (error) {
