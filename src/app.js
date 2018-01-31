@@ -69,7 +69,7 @@ function consultaClienteWS(idcontrato) {
                 "IdWorkOrderFormType": "0d7032d7-2477-44a1-a14c-20ec2c704283",
                 "InputFields": {
                     "tipo_busqueda": "Por_Cliente",
-                    "Num_Cliente": idcontrato,
+                    "Num_Cliente": "3897896",
                     "ExternalType": "Consulta_Solicitudes"
                 }
             }
@@ -84,8 +84,8 @@ function consultaClienteWS(idcontrato) {
             console.log('WS Monte -- response.body:', response.body);
             var resSting = JSON.stringify(response.body);
             var newstr = resSting.substring(resSting.indexOf("</Saldo_Fecha>"));
-            var ini = newstr.indexOf("<Saldo_Fecha>") + 12;
-            var fin = newstr.indexOf("</Saldo_Fecha");
+            var ini = newstr.indexOf("<Saldo_Fecha>") + 13;
+            var fin = newstr.indexOf("</Saldo_Fecha") + 21;
             var s = newstr.substring(ini);
             console.log('Saldo_Fecha= ', s);
             resolve();
