@@ -52,6 +52,9 @@ const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 function consultaClienteWS(idcontrato) {
     console.log('InvocarWS Monte');
     console.log('idcontrato: ', idcontrato);
+    if (idcontrato === null) {
+        return "";
+    }
     return new Promise((resolve, reject) => {
         request({
             url: 'http://189.254.131.9:8080/NMP/GestionMovilRS/FlexibleUpdateWorkOrder',
@@ -77,7 +80,8 @@ function consultaClienteWS(idcontrato) {
                 console.log('Error: ', response.body.error);
                 reject(new Error(response.body.error));
             }
-            console.log('WS Monte -- response.body', response.body);
+            console.log('WS Monte -- response.body:', response.body);
+            console.log('response.body.substring(774,782):', response.body.substring(774, 782));
             resolve();
         });
     });
@@ -745,8 +749,8 @@ class FacebookBot {
                     }
                     //---Demo WS Monte -------------------------
                     if (value.lifespan == 2) {
-                        console.log("value.name.indexOf('deuda'): ", value.name.indexOf('alta') < 0);
-                        if (value.name.indexOf('alta') < 0) {
+                        console.log("value.name.indexOf('deuda'): ", value.name.indexOf('deuda') < 0);
+                        if (value.name.indexOf('deuda') < 0) {
                             console.log('response.result.parameters.valor: ', response.result.parameters.valor);
                             consultaClienteWS(response.result.parameters.valor);
                         }
