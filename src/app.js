@@ -81,7 +81,7 @@ function consultaClienteWS(idcontrato) {
                 reject(new Error(response.body.error));
             }
             console.log('WS Monte -- response.body:', response.body);
-            console.log('response.body.substring(774,782):', response.body.substring(774, 782));
+            console.log('response.body.substring(774,782):', response.body.toString.substring(774, 782));
             resolve();
         });
     });
