@@ -10,6 +10,7 @@ const async = require('async');
 const url = require('url');
 //firebase 
 var firebase = require('firebase');
+var parseString = require('xml2js').parseString;
 //cofiguracion conexion firebase
 var config = {
     apiKey: process.env.FBASE_APIKEY, //"AIzaSyCsVB58GbuUmkwSSv4WAlk3FOuU786IrEg",
@@ -52,7 +53,7 @@ const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 function consultaClienteWS(idcontrato) {
     console.log('InvocarWS Monte');
     console.log('idcontrato: ', idcontrato);
-    if (idcontrato === null) {
+    if (idcontrato === 'undefined' || idcontrato === null) {
         return "";
     }
     return new Promise((resolve, reject) => {
@@ -81,6 +82,10 @@ function consultaClienteWS(idcontrato) {
                 reject(new Error(response.body.error));
             }
             console.log('WS Monte -- response.body:', response.body);
+            var xml = response.body;
+            parseString(xml, function(err, result) {
+                console.dir('response.body to json', JSON.stringify(result));
+            });
             resolve();
         });
     });
