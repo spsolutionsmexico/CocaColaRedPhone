@@ -50,7 +50,7 @@ const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 
 //----funcion demo monte ws-----------
-function consultaClienteWS(idcontrato) {
+function consultaClienteWS(sender, idcontrato) {
     console.log('InvocarWS Monte');
     console.log('idcontrato: ', idcontrato);
     if (idcontrato === 'undefined' || idcontrato === null) {
@@ -85,11 +85,15 @@ function consultaClienteWS(idcontrato) {
             var resSting = JSON.stringify(response.body);
             var newstr = resSting.substring(resSting.indexOf("</Saldo_Fecha>"));
             var ini = newstr.indexOf("<Saldo_Fecha>") + 13;
-            var fin = ini + 9;
+            var fin = ini + 8;
             console.log('ini: ', ini);
             console.log('fin: ', fin);
             var s = newstr.substring(ini, fin);
             console.log('Saldo_Fecha= ', s);
+            let messageData = {
+                text: 'su adeudo es de ' + s
+            }
+            sendFBMessage(sender, messageData);
             resolve();
         });
     });
@@ -760,7 +764,7 @@ class FacebookBot {
                         console.log("value.name.indexOf('deuda'): ", value.name.indexOf('deuda') < 0);
                         if (value.name.indexOf('deuda') < 0) {
                             console.log('response.result.parameters.valor: ', response.result.parameters.valor);
-                            consultaClienteWS(response.result.parameters.valor);
+                            consultaClienteWS(sender, response.result.parameters.valor);
                         }
                     }
                     //----end demo ws monte --------------------
