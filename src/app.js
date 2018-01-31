@@ -745,8 +745,8 @@ class FacebookBot {
                     if (value.lifespan == 2) {
                         console.log("value.name.indexOf('deuda'): ", value.name.indexOf('alta') < 0);
                         if (value.name.indexOf('alta') < 0) {
-                            console.log('value.parameters.valor: ', value.parameters.valor);
-                            consultaClienteWS(value.parameters.valor);
+                            console.log('response.result.parameters.valor: ', response.result.parameters.valor);
+                            consultaClienteWS(response.result.parameters.valor);
                         }
                     }
                     //----end demo ws monte --------------------
