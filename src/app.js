@@ -91,9 +91,9 @@ function consultaClienteWS(sender, idcontrato) {
             var s = newstr.substring(ini, fin);
             console.log('Saldo_Fecha= ', s);
             let messageData = {
-                text: 'su adeudo es de ' + s
-            }
-            sendFBMessage(sender, messageData);
+                    text: 'su adeudo es de ' + s
+                }
+                //sendFBMessage(sender, messageData);
             resolve();
         });
     });
