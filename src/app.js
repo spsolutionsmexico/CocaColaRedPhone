@@ -81,7 +81,6 @@ function consultaClienteWS(idcontrato) {
                 reject(new Error(response.body.error));
             }
             console.log('WS Monte -- response.body:', response.body);
-            console.log('response.body.toString.split: ', response.body.toString.split('Saldo_Fecha', 10));
             resolve();
         });
     });
