@@ -82,10 +82,12 @@ function consultaClienteWS(idcontrato) {
                 reject(new Error(response.body.error));
             }
             console.log('WS Monte -- response.body:', response.body);
-            var xml = response.body;
-            parseString(xml, function(err, result) {
-                console.dir('response.body to json', JSON.stringify(result));
-            });
+            var resSting = JSON.stringify(response.body);
+            var newstr = resSting.substring(resSting.indexOf("</Saldo_Fecha>"));
+            var ini = newstr.indexOf("<Saldo_Fecha>");
+            var fin = newstr.indexOf("</Saldo_Fecha");
+            var s = newstr.substring(ini);
+            console.log('Saldo_Fecha= ', s);
             resolve();
         });
     });
