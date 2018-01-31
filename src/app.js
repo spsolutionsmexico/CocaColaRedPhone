@@ -84,6 +84,9 @@ function consultaClienteWS(idcontrato) {
             console.log('WS Monte -- response.body:', response.body);
             var resSting = JSON.stringify(response.body);
             var newstr = resSting.substring(resSting.indexOf("</Saldo_Fecha>"));
+            parseString(newstr, function(err, result) {
+                console.dir('newstr to json: ', JSON.stringify(result));
+            });
             var ini = newstr.indexOf("<Saldo_Fecha>");
             var fin = newstr.indexOf("</Saldo_Fecha");
             var s = newstr.substring(ini, fin);
