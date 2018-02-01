@@ -785,15 +785,15 @@ class FacebookBot {
                             solicitudReto(value.parameters.reto, value.parameters.mensaje, arrFecha[0], arrFecha[1]);
                         }
                     }
-                    //---Demo WS Monte -------------------------
+                    /*---Demo WS Monte -------------------------
                     if (value.lifespan == 2) {
-                        console.log("value.name.indexOf('deuda'): ", value.name.indexOf('deuda') < 0);
-                        if (value.name.indexOf('deuda') < 0) {
+                        if (value.name === 'reto13-deuda') {
                             console.log('response.result.parameters.valor: ', response.result.parameters.valor);
+                            console.log('value.parameters.valor: ', value.parameters.valor);
                             consultaClienteWS(sender, response.result.parameters.valor);
                         }
                     }
-                    //----end demo ws monte --------------------
+                    //----end demo ws monte --------------------*/
                     console.log('value.name.indexOf -fin:', value.name.indexOf('-fin'));
                     if (value.name.indexOf('-fin') > 0 && value.name != 'alta-fin') {
                         var arr2 = value.name.split("-", 2);
