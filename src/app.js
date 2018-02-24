@@ -127,7 +127,7 @@ function consultaClienteWS(sender, idcontrato) {
 
 //grabar usuario en arbol usuarios (registro completo)
 function guardarAlta(idusr, fechaAtaFin) {
-    //arbol usurios
+    //arbol usuarios
     console.log('guardar ALta ');
     try {
         var db = firebase.database();
@@ -135,6 +135,9 @@ function guardarAlta(idusr, fechaAtaFin) {
         //var newRef = ref.push();
         var newRef = ref.child(idusr);
         newRef.child("fb_id").set(idusr).then(function(data) {
+            console.log('Firebase data: ', data);
+        })
+        newRef.child("Estado").set('Activo').then(function(data) {
             console.log('Firebase data: ', data);
         })
         grabardatosAlta(idusr, 'fechaActualizacion', fechaAtaFin);
