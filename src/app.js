@@ -207,7 +207,7 @@ function solicitudReto(nombre, texto, fecha, hora) {
                     var reg = childSnap.val();
                     console.log('registro= ', reg.fb_id);
                     console.log('registro=estado', reg.estado);
-                    if {reg.estado=="activo"}
+                    if (reg.estado==="activo")
                     {sendAlertaReto(reg.fb_id, messageData);
                     }
                         contador++;
