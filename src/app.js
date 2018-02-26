@@ -132,7 +132,8 @@ function guardarAlta(idusr, fechaAtaFin) {
     try {
         var db = firebase.database();
         var ref = db.ref(REF_ALTA);
-        //var newRef = ref.push();
+        var refExiste = db.ref(REF_ALTA + idusr);
+        refExiste.remove();
         var newRef = ref.child(idusr);
         newRef.child("fb_id").set(idusr).then(function(data) {
             console.log('Firebase data: ', data);
@@ -207,10 +208,10 @@ function solicitudReto(nombre, texto, fecha, hora) {
                     var reg = childSnap.val();
                     console.log('registro= ', reg.fb_id);
                     console.log('registro=estado', reg.estado);
-                    if (reg.estado==="activo")
-                    {sendAlertaReto(reg.fb_id, messageData);
+                    if (reg.estado === "activo") {
+                        sendAlertaReto(reg.fb_id, messageData);
                     }
-                        contador++;
+                    contador++;
                 })
                 callback(null, contador);
             });
