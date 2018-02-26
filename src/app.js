@@ -137,7 +137,7 @@ function guardarAlta(idusr, fechaAtaFin) {
         newRef.child("fb_id").set(idusr).then(function(data) {
             console.log('Firebase data: ', data);
         })
-        newRef.child("Estado").set('Activo').then(function(data) {
+        newRef.child("estado").set('activo').then(function(data) {
             console.log('Firebase data: ', data);
         })
         grabardatosAlta(idusr, 'fechaActualizacion', fechaAtaFin);
@@ -206,8 +206,11 @@ function solicitudReto(nombre, texto, fecha, hora) {
                 snap.forEach(function(childSnap) {
                     var reg = childSnap.val();
                     console.log('registro= ', reg.fb_id);
-                    sendAlertaReto(reg.fb_id, messageData);
-                    contador++;
+                    console.log('registro=estado', reg.estado);
+                    if {reg.estado=="activo"}
+                    {sendAlertaReto(reg.fb_id, messageData);
+                    }
+                        contador++;
                 })
                 callback(null, contador);
             });
